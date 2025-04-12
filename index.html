@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agustin Marquez - Artist & Director</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Masonry layout for paintings in homepage */
+        #paintings-summary .thumbnails-grid {
+            column-count: 3;
+            column-gap: 2rem;
+            padding: 0;
+            margin-bottom: 40px;
+        }
+        
+        #paintings-summary .thumbnail-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            break-inside: avoid;
+            display: block;
+        }
+        
+        #paintings-summary .thumbnail-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        #paintings-summary .thumbnail-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        
+        #paintings-summary .thumbnail-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        #paintings-summary .thumbnail-item-overlay h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+        
+        #paintings-summary .thumbnail-item-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 900px) {
+            #paintings-summary .thumbnails-grid {
+                column-count: 2;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            #paintings-summary .thumbnails-grid {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container - Will be filled by JavaScript -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Video Section -->
+    <header class="hero">
+        <div class="video-container">
+            <video autoplay muted loop id="hero-video">
+                <source src="media/videos/watermarked_preview.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay"></div>
+            <div class="hero-text">
+                <h1>AGUSTIN MARQUEZ</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sections Summary -->
+    <main>
+        <!-- Video Section Summary -->
+        <section class="summary-section" id="video-summary">
+            <div class="section-title">
+                <h2>VIDEO</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="thumbnails-grid">
+                <div class="thumbnail-item"><a href="pages/videos/video1.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 1"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video2.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 2"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video3.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 3"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video4.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 4"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video5.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 5"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video6.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 6"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video7.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 7"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video8.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 8"></a></div>
+                <div class="thumbnail-item"><a href="pages/videos/video9.html"><img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 9"></a></div>
+            </div>
+            <div class="view-more">
+                <a href="videos.html">View All Videos</a>
+            </div>
+        </section>
+
+        <!-- Photo Section Summary -->
+        <section class="summary-section" id="photo-summary">
+            <div class="section-title">
+                <h2>PHOTO</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="thumbnails-grid">
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Landscape"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Portrait"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Wildlife"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Landscape"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Portrait"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Wildlife"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Landscape"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Portrait"></a></div>
+                <div class="thumbnail-item"><a href="#"><img src="temp_images/africa_landscape1.jpg" alt="Africa Wildlife"></a></div>
+            </div>
+            <div class="view-more">
+                <a href="photos.html">View All Photos</a>
+            </div>
+        </section>
+
+        <!-- Paintings Section Summary -->
+        <section class="summary-section" id="paintings-summary">
+            <div class="section-title">
+                <h2>PAINTINGS</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="thumbnails-grid" id="paintings-summary-grid">
+                <!-- Paintings will be loaded dynamically from paintingData.json -->
+            </div>
+            <div class="view-more">
+                <a href="paintings.html">View All Paintings</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Agustin Marquez. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Load paintings data for homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            const paintingsSummaryGrid = document.getElementById('paintings-summary-grid');
+            if (!paintingsSummaryGrid) return;
+            
+            // Fetch the painting data from JSON file
+            fetch('data/paintingData.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display only the first 10 paintings (or all if less than 10)
+                    const displayPaintings = data.paintings.slice(0, 10);
+                    
+                    // Generate the grid items
+                    generatePaintingsSummaryGrid(displayPaintings);
+                })
+                .catch(error => {
+                    console.error('Error loading painting data:', error);
+                    paintingsSummaryGrid.innerHTML = '<p>Error loading paintings. Please refresh the page.</p>';
+                });
+            
+            // Generate the paintings grid for the homepage
+            function generatePaintingsSummaryGrid(paintings) {
+                // Clear any existing content
+                paintingsSummaryGrid.innerHTML = '';
+                
+                // Generate HTML for each painting
+                paintings.forEach(painting => {
+                    const paintingItem = document.createElement('div');
+                    paintingItem.className = 'thumbnail-item';
+                    
+                    paintingItem.innerHTML = `
+                        <a href="paintings.html">
+                            <img src="${painting.imgSrc}" alt="${painting.alt}">
+                            <div class="thumbnail-item-overlay">
+                                <h3>${painting.title}</h3>
+                                <p>${painting.shortDescription}</p>
+                            </div>
+                        </a>
+                    `;
+                    
+                    paintingsSummaryGrid.appendChild(paintingItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

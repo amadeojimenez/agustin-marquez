@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agustin Marquez - Paintings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Additional styles specific to the paintings page */
+        .painting-intro {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin: 80px 0;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .painting-intro h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .painting-intro-text {
+            flex: 1.5;
+            padding-left: 5%;
+            padding-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .painting-intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .painting-intro::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #333;
+            top: -30px;
+            left: 40%;
+            z-index: 1;
+            opacity: 0.2;
+        }
+        
+        .painting-intro::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(200, 200, 200, 0.1);
+            bottom: 20px;
+            right: 10%;
+            z-index: 1;
+        }
+        
+        /* Masonry layout for paintings */
+        .paintings-grid {
+            column-count: 3;
+            column-gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 80px;
+        }
+        
+        .painting-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            break-inside: avoid;
+            display: block;
+        }
+        
+        .painting-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .painting-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .painting-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        .painting-item-overlay h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+        
+        .painting-item-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 900px) {
+            .paintings-grid {
+                column-count: 2;
+            }
+            
+            .painting-intro {
+                flex-direction: column;
+            }
+            
+            .painting-intro-text {
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .paintings-grid {
+                column-count: 1;
+            }
+        }
+        
+        /* Modal styles */
+        .painting-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            overflow-y: auto;
+            padding: 50px 0;
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: auto;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.3s ease-in-out;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-image-container {
+            width: 100%;
+            background-color: #000;
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .modal-details {
+            padding: 30px;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            text-indent: 20px;
+        }
+        
+        .modal-caption {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+            margin: 0 0 20px 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .modal-description {
+            margin: 20px 0;
+            line-height: 1.6;
+            color: #333; /* Adding text color to ensure visibility */
+        }
+        
+        .modal-description p {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .modal-buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .modal-buy-btn {
+            padding: 10px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        .modal-buy-btn:hover:not(:disabled) {
+            background-color: #555;
+        }
+        
+        .modal-buy-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+            z-index: 1010;
+        }
+        
+        .modal-close-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Prevent body scrolling when modal is open */
+        .modal-open {
+            overflow: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+            }
+            
+            .modal-details {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Modal navigation buttons */
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            z-index: 1010;
+        }
+        
+        .modal-nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .modal-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        
+        .modal-prev-btn {
+            left: 20px;
+        }
+        
+        .modal-next-btn {
+            right: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .modal-prev-btn {
+                left: 10px;
+            }
+            
+            .modal-next-btn {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container - Will be filled by JavaScript -->
+    <div id="navbar-container"></div>
+
+    <!-- Introduction Section with Artistic Layout -->
+    <section class="painting-intro">
+        <h1>Paintings</h1>
+        <div class="painting-intro-text">
+            <p>Painting is where my artistic journey began—a practice that continues to be a profound medium of personal expression. Through brushstrokes and color, I explore emotions and concepts that often transcend verbal articulation.</p>
+            <p>My approach to painting is intuitive and experimental, allowing the canvas to become a space for dialogue between conscious technique and subconscious expression. I work primarily with oils and acrylics, though I frequently incorporate mixed media elements to achieve textural depth and visual complexity.</p>
+            <p>The works displayed here represent various periods of my artistic development, from more traditional landscape studies to abstract explorations of color and form. Each painting carries with it a piece of my perception and emotional landscape at the time of its creation.</p>
+        </div>
+    </section>
+
+    <!-- Full Paintings Grid -->
+    <div class="paintings-grid" id="paintings-grid">
+        <!-- Paintings will be loaded dynamically from paintingData.json -->
+    </div>
+
+    <!-- Modal Structure for Painting Details -->
+    <div class="painting-modal" id="painting-modal">
+        <div class="modal-content">
+            <div class="modal-image-container">
+                <img src="" alt="Painting Image" class="modal-image" id="modal-image">
+            </div>
+            <div class="modal-details">
+                <h2 class="modal-title" id="modal-title">Painting Title</h2>
+                <p class="modal-caption" id="modal-caption">Painting Caption</p>
+                <div class="modal-description" id="modal-description">
+                    <p>Description of the painting goes here.</p>
+                </div>
+                <div class="modal-buttons">
+                    <button class="modal-buy-btn" id="modal-buy-btn">Buy Now</button>
+                    <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+                </div>
+            </div>
+            <button class="modal-nav-btn modal-prev-btn" id="modal-prev-btn">&#8249;</button>
+            <button class="modal-nav-btn modal-next-btn" id="modal-next-btn">&#8250;</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Agustin Marquez. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

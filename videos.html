@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agustin Marquez - Videos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Additional styles specific to the videos page */
+        .video-intro {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin: 80px 0;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-intro h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .video-intro-text {
+            flex: 1.5;
+            padding-left: 5%;
+            padding-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .video-intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .video-intro::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #333;
+            top: -30px;
+            left: 40%;
+            z-index: 1;
+            opacity: 0.2;
+        }
+        
+        .video-intro::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(200, 200, 200, 0.1);
+            bottom: 20px;
+            right: 10%;
+            z-index: 1;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 80px;
+        }
+        
+        .video-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .video-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        .video-item-overlay h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+        
+        .video-item-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 900px) {
+            .videos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-intro {
+                flex-direction: column;
+            }
+            
+            .video-intro-text {
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container - Will be filled by JavaScript -->
+    <div id="navbar-container"></div>
+
+    <!-- Introduction Section with Artistic Layout -->
+    <section class="video-intro">
+        <h1>Video</h1>
+        <div class="video-intro-text">
+            <p>Through the lens of my camera, I seek to capture not just moments, but emotions, stories, and perspectives that often go unnoticed in our fast-paced world. My videography is an exploration of human connection, environmental consciousness, and artistic expression.</p>
+            <p>I believe that videos have the unique power to transport viewers into different worlds, challenging their perceptions and evoking genuine emotional responses. Each project is approached with meticulous attention to composition, lighting, and narrative flow—elements that transform ordinary footage into compelling visual poetry.</p>
+            <p>The works you'll find here represent my journey as a visual storyteller, from intimate documentary-style pieces to more experimental visual concepts that push the boundaries of traditional videography.</p>
+        </div>
+    </section>
+
+    <!-- Full Videos Grid -->
+    <div class="videos-grid">
+        <div class="video-item">
+            <a href="pages/videos/video1.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 1">
+                <div class="video-item-overlay">
+                    <h3>Urban Rhythms</h3>
+                    <p>Exploring city life through movement and sound</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video2.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 2">
+                <div class="video-item-overlay">
+                    <h3>Natural Harmony</h3>
+                    <p>The silent conversations between elements of nature</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video3.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 3">
+                <div class="video-item-overlay">
+                    <h3>Light & Shadow</h3>
+                    <p>A study of contrast in everyday environments</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video4.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 4">
+                <div class="video-item-overlay">
+                    <h3>Human Stories</h3>
+                    <p>Personal narratives from around the world</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video5.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 5">
+                <div class="video-item-overlay">
+                    <h3>Abstract Perceptions</h3>
+                    <p>Experimental visual compositions</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video6.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 6">
+                <div class="video-item-overlay">
+                    <h3>Coastal Dreams</h3>
+                    <p>The mesmerizing patterns of shorelines</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video7.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 7">
+                <div class="video-item-overlay">
+                    <h3>Architectural Visions</h3>
+                    <p>Finding beauty in structural design</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video8.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 8">
+                <div class="video-item-overlay">
+                    <h3>Cultural Rhythms</h3>
+                    <p>Traditions and celebrations across cultures</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video9.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 9">
+                <div class="video-item-overlay">
+                    <h3>Silent Moments</h3>
+                    <p>Finding peace in stillness</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video10.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 10">
+                <div class="video-item-overlay">
+                    <h3>Seasonal Changes</h3>
+                    <p>The transformation of landscapes throughout the year</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video11.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 11">
+                <div class="video-item-overlay">
+                    <h3>Industrial Beauty</h3>
+                    <p>Finding art in functional spaces</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-item">
+            <a href="pages/videos/video12.html">
+                <img src="https://plus.unsplash.com/premium_photo-1675705698856-4e15ed5506d6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Video 12">
+                <div class="video-item-overlay">
+                    <h3>Nocturnal City</h3>
+                    <p>Urban landscapes after dark</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Agustin Marquez. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
