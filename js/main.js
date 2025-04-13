@@ -1,8 +1,37 @@
 // Navigation bar scroll effect
 document.addEventListener('DOMContentLoaded', function() {
     // Load and inject navbar
+
+    const navbar = document.getElementById('main-navbar');
+    const placeholder = document.getElementById('navbar-placeholder');
+    
+    // Initial check for scroll position
+    if (window.scrollY > 0) {
+        navbar.style.opacity = '1';
+        placeholder.style.opacity = '0';
+    } else {
+        navbar.style.opacity = '0';
+        placeholder.style.opacity = '1';
+    }
+    
+    // Scroll event to toggle nav appearance
+    window.addEventListener('scroll', function() {
+        console.log('Scroll position:', window.scrollY);
+        console.log(window.innerHeight);
+        const scrollThreshold = window.innerHeight * 0.5; // 50% of viewport height
+        if (window.scrollY > scrollThreshold) {
+            navbar.style.opacity = '1';
+            placeholder.style.opacity = '0';
+        } else {
+            navbar.style.opacity = '0';
+            placeholder.style.opacity = '1';
+        }
+    });
+
+
     const navbarContainer = document.getElementById('navbar-container');
     if (navbarContainer) {
+     
         fetch('components/navbar.html')
             .then(response => response.text())
             .then(html => {
@@ -50,24 +79,20 @@ function applyNavbarScrollEffects() {
     // Scroll event
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            navbar.style.backgroundColor = navbar.classList.contains('light-theme') ? 
-                'rgba(255, 255, 255, 0.98)' : 'rgba(22, 22, 22, 0.9)';
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
             navbar.style.padding = '15px 0';
         } else {
-            navbar.style.backgroundColor = navbar.classList.contains('light-theme') ? 
-                'rgba(255, 255, 255, 0.95)' : 'rgba(22, 22, 22, 0.9)';
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
             navbar.style.padding = '20px 0';
         }
     });
     
     // Initial state
     if (window.scrollY > 50) {
-        navbar.style.backgroundColor = navbar.classList.contains('light-theme') ? 
-            'rgba(255, 255, 255, 0.98)' : 'rgba(22, 22, 22, 0.9)';
+        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
         navbar.style.padding = '15px 0';
     } else {
-        navbar.style.backgroundColor = navbar.classList.contains('light-theme') ? 
-            'rgba(255, 255, 255, 0.95)' : 'rgba(22, 22, 22, 0.7)';
+        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
         navbar.style.padding = '20px 0';
     }
 }
@@ -308,4 +333,28 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('modal-open');
         }
     }
+});
+
+// Hero text scroll effect
+document.addEventListener('scroll', function() {
+    const heroTextContainer = document.querySelector('.hero-text');
+    if (!heroTextContainer) return;
+    
+    // Calculate an offset factor for vertical movement
+    const offset = window.scrollY * 0.2;
+    heroTextContainer.style.transform = `translate(-50%, calc(-50% - ${offset}px))`;
+    
+    // Non-linear fadeout opacity:
+    // Start fading after 100px scroll, completely fade out at 300px scroll
+    const fadeStart = 100;
+    const fadeEnd = 800;
+    const scrollY = window.scrollY;
+    let opacity = 1;
+    if (scrollY > fadeStart) {
+        let progress = (scrollY - fadeStart) / (fadeEnd - fadeStart);
+        progress = Math.min(progress, 1);
+        // Using quadratic easing for fadeout effect
+        opacity = 1 - (progress * progress);
+    }
+    heroTextContainer.style.opacity = opacity;
 });

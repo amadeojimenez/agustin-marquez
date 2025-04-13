@@ -63,11 +63,11 @@
             position: absolute;
             width: 150px;
             height: 150px;
-            border: 2px solid #333;
+            border: 2px solid #ddd; /* Changed from #333 to lighter gray */
             top: -30px;
             left: 40%;
             z-index: 1;
-            opacity: 0.2;
+            opacity: 0.5; /* Increased opacity for light theme */
         }
         
         .about-section::after {
@@ -75,7 +75,7 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            background-color: rgba(200, 200, 200, 0.1);
+            background-color: rgba(200, 200, 200, 0.3); /* Lighter background */
             bottom: 20px;
             right: 10%;
             z-index: 1;
@@ -140,7 +140,7 @@
         }
         
         .form-submit {
-            background-color: #333;
+            background-color: #0a0a0a; /* Changed from #333 to match site theme */
             color: white;
             border: none;
             padding: 12px 24px;
@@ -152,7 +152,7 @@
         }
         
         .form-submit:hover {
-            background-color: #555;
+            background-color: #333; /* Lighter hover state */
         }
         
         @media (max-width: 900px) {
