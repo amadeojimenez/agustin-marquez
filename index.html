@@ -103,7 +103,7 @@
     <!-- Hero Video Section -->
     <header class="hero">
         <div class="video-container">
-            <video autoplay muted loop id="hero-video" onended="showStillImage()">
+            <video autoplay muted id="hero-video" onended="showStillImage()">
                 <source src="https://qrkit.es/publico/936/src/img/2025-04-14+Video+Intro.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -261,6 +261,7 @@
 
         // Show still image when video ends
         function showStillImage() {
+            console.log('vamos!')
             const video = document.getElementById('hero-video');
             const stillImage = document.getElementById('still-image');
             video.style.display = 'none';
