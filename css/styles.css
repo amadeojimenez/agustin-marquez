@@ -1,4 +1,11 @@
 /* Global Styles */
+@font-face {
+    font-family: 'Clown';
+    src: url('../fonts/Clown-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,14 +13,14 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Clown', 'Helvetica Neue', Arial, sans-serif;
     background-color: #ffffff; /* Changed from #161616 to white */
-    color: #0a0a0a; /* Changed from #ffffff to dark gray */
+    color: #313030; /* Changed from #ffffff to dark gray */
     line-height: 1.6;
 }
 
 a {
-    color: #0a0a0a; /* Changed from #ffffff to dark gray */
+    color: #313030; /* Changed from #ffffff to dark gray */
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
@@ -62,6 +69,8 @@ a:hover {
     position: relative;
     text-align: center;
     font-weight: 200;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 /* Styling for the name container in the center of navbar */
@@ -320,7 +329,7 @@ main {
 }
 
 .section-title {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     position: relative;
 }
 
@@ -329,7 +338,7 @@ main {
     font-weight: 300;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 .underline {

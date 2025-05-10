@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         console.log('Scroll position:', window.scrollY);
         console.log(window.innerHeight);
-        const scrollThreshold = window.innerHeight * 0.5; // 50% of viewport height
+        const scrollThreshold = window.innerHeight * 0.8; // 50% of viewport height
         if (window.scrollY > scrollThreshold) {
             navbar.style.opacity = '1';
             placeholder.style.opacity = '0';
