@@ -31,16 +31,17 @@ a:hover {
 
 /* Navigation Bar */
 .navbar {
-    position: fixed;
+    position: fixed; /* Always fixed at the top */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    /* padding: 20px 0; */
-    background-color: rgba(255, 255, 255, 0.9); /* Changed to white */
+    padding: 16px 0;
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Added shadow for light theme */
+    transition: opacity 0.3s ease; /* Changed from all to opacity for initial fade-in if needed */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 1; /* Ensure it's visible by default */
 }
 
 /* Light theme for navbar */
@@ -260,7 +261,7 @@ a:hover {
 /* Hero Video Section */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 92vh;
     overflow: hidden;
 }
 
@@ -318,23 +319,24 @@ a:hover {
 main {
     max-width: 100%;
     margin: 0 auto;
-    padding: 80px 30px;
+    padding: 80px 30px 0px 30px;
     position: relative;
     z-index: 2; /* Ensures content sits above the fixed video */
     background-color: #ffffff;
 }
 
 .summary-section {
-    margin-bottom: 120px;
+    margin-bottom: 60px;
 }
 
 .section-title {
     margin-bottom: 30px;
     position: relative;
+    text-align: center; /* Center align the title and underline */
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
+    font-size: 2rem; /* Slightly smaller font size */
     font-weight: 300;
     letter-spacing: 5px;
     text-transform: uppercase;
@@ -344,8 +346,8 @@ main {
 .underline {
     width: 150px;
     height: 1px;
-    background-color: #0a0a0a; /* Changed from white to dark */
-    margin-bottom: 30px;
+    background-color: #0a0a0a;
+    margin: 0 auto 30px; /* Center the underline and maintain bottom margin */
 }
 
 /* Thumbnails Grid */
@@ -449,4 +451,20 @@ footer {
     .section-title h2 {
         font-size: 1.8rem;
     }
+}
+
+/* Scroll Arrow for Main Section */
+#main-scroll-arrow-container {
+    position: absolute;
+    top: 26px; /* Adjust as needed from the top of the main section */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#main-scroll-arrow-container .arrow {
+    font-size: 1.2rem; /* Adjust size */
+    color: #313030; /* Match your body text or a subtle color */
 }

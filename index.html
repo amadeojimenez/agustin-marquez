@@ -275,9 +275,8 @@
 </head>
 
 <body>
-    <!-- Navbar Container - Will be filled by JavaScript -->
-    <!-- Hardcoded navbar for index page -->
-    <nav class="navbar" id="main-navbar" style="opacity: 0; transition: opacity 0.5s ease;">
+    <!-- Main Navbar - Standard Sticky -->
+    <nav class="navbar" id="main-navbar">
         <div class="nav-container">
             <div class="nav-item"><a href="videos.html" id="videos-link">VIDEO</a></div>
             <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
@@ -285,7 +284,6 @@
                 <a href="index.html">
                     <div class="name-wrapper">
                         <div class="main-name">AGUSTIN MARQUEZ</div>
-                        <div class="subtitle">Filmmaker, Photographer, Painter</div>
                     </div>
                 </a>
             </div>
@@ -293,10 +291,7 @@
             <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div> 
         </div>
     </nav>
-    <div id="navbar-placeholder"
-        style="position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background-color: white; text-align: center; line-height: 70px; transition: opacity 0.5s ease;">
-        <span class="arrow">&#9660;</span>
-    </div>
+
     <!-- Hero Video Section -->
     <header class="hero">
         <div class="video-container">
@@ -304,7 +299,7 @@
                 <source src="https://qrkit.es/publico/936/src/img/2025-04-14+Video+Intro.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <img id="still-image" src="https://qrkit.es/publico/936/src/img/media/misc/still.jpg" alt="Agustin Marquez" style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+            <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez" style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
             <!-- <div class="overlay"></div> -->
             <!-- <div class="hero-text">
                 <h1>AGUSTIN MARQUEZ</h1>
@@ -314,6 +309,10 @@
 
     <!-- Sections Summary -->
     <main>
+        <div id="main-scroll-arrow-container">
+            <span class="arrow">&#9660;</span>
+        </div>
+
         <!-- Video Section Summary -->
         <section class="summary-section" id="video-summary">
             <div class="section-title">
@@ -355,19 +354,19 @@
             </div>
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/media/m_foto/1Personal.png" alt="Personal">
+                    <img src="https://qrkit.es/publico/936/src/img/1.png" alt="Personal">
                     <div class="photo-overlay">
                         <h3>Personal</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/media/m_foto/2Art.png" alt="Art">
+                    <img src="https://qrkit.es/publico/936/src/img/2.png" alt="Art">
                     <div class="photo-overlay">
                         <h3>Art</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/media/m_foto/3Africa.png" alt="Africa">
+                    <img src="https://qrkit.es/publico/936/src/img/3.png" alt="Africa">
                     <div class="photo-overlay">
                         <h3>Africa</h3>
                     </div>
@@ -386,19 +385,19 @@
             </div>
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/media/m_pintura/1Alex.png" alt="Alex">
+                    <img src="https://qrkit.es/publico/936/src/img/4.png" alt="Alex">
                     <div class="painting-overlay">
                         <h3>Alex</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/media/m_pintura/2Arya.png" alt="Arya">
+                    <img src="https://qrkit.es/publico/936/src/img/5.png" alt="Arya">
                     <div class="painting-overlay">
                         <h3>Arya</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/media/m_pintura/3Sketches.png" alt="Sketches">
+                    <img src="https://qrkit.es/publico/936/src/img/6.png" alt="Sketches">
                     <div class="painting-overlay">
                         <h3>Sketches</h3>
                     </div>
@@ -408,11 +407,11 @@
                 <a href="paintings.html">View All Paintings</a>
             </div> -->
         </section>
+        <footer>
+            <p>&copy; 2025 Agustin Marquez. All Rights Reserved. | <a href="mailto:contact@agustinmarquez.com">contact@agustinmarquez.com</a> | <a href="about.html">About</a></p>
+        </footer>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Agustin Marquez. All Rights Reserved. | <a href="mailto:contact@agustinmarquez.com">contact@agustinmarquez.com</a> | <a href="about.html">About</a></p>
-    </footer>
 
     <!-- Modal Structure -->
     <div id="lightbox-modal" class="modal">
@@ -548,6 +547,27 @@
                     modalContent.innerHTML = ''; // Clear content
                 }
             });
+        });
+
+        // Fading Scroll Arrow for Main Section
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollArrowContainer = document.getElementById('main-scroll-arrow-container');
+            const fadeOutThreshold = 20; // Pixels scrolled before arrow starts to fade
+
+            if (!scrollArrowContainer) return;
+
+            function handleScrollArrow() {
+                if (window.scrollY > fadeOutThreshold) {
+                    scrollArrowContainer.style.opacity = '0';
+                } else {
+                    scrollArrowContainer.style.opacity = '1';
+                }
+            }
+
+            // Initial check
+            handleScrollArrow();
+            // Listen for scroll events
+            window.addEventListener('scroll', handleScrollArrow);
         });
     </script>
 </body>

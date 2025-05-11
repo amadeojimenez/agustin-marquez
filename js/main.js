@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const placeholder = document.getElementById('navbar-placeholder');
     
     // Initial check for scroll position
-    if (window.scrollY > 0) {
-        navbar.style.opacity = '1';
-        placeholder.style.opacity = '0';
-    } else {
-        navbar.style.opacity = '0';
-        placeholder.style.opacity = '1';
-    }
+    // if (window.scrollY > 0) {
+    //     navbar.style.opacity = '1';
+    //     placeholder.style.opacity = '0';
+    // } else {
+    //     navbar.style.opacity = '0';
+    //     placeholder.style.opacity = '1';
+    // }
     
     // Scroll event to toggle nav appearance
     window.addEventListener('scroll', function() {
