@@ -15,18 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
     
     // Scroll event to toggle nav appearance
-    window.addEventListener('scroll', function() {
-        console.log('Scroll position:', window.scrollY);
-        console.log(window.innerHeight);
-        const scrollThreshold = window.innerHeight * 0.8; // 50% of viewport height
-        if (window.scrollY > scrollThreshold) {
-            navbar.style.opacity = '1';
-            placeholder.style.opacity = '0';
-        } else {
-            navbar.style.opacity = '0';
-            placeholder.style.opacity = '1';
-        }
-    });
+    // window.addEventListener('scroll', function() {
+    //     console.log('Scroll position:', window.scrollY);
+    //     console.log(window.innerHeight);
+    //     const scrollThreshold = window.innerHeight * 0.8; // 50% of viewport height
+    //     if (window.scrollY > scrollThreshold) {
+    //         navbar.style.opacity = '1';
+    //         placeholder.style.opacity = '0';
+    //     } else {
+    //         navbar.style.opacity = '0';
+    //         placeholder.style.opacity = '1';
+    //     }
+    // });
 
 
     const navbarContainer = document.getElementById('navbar-container');
