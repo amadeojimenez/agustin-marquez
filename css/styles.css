@@ -1,10 +1,4 @@
-/* Global Styles */
-@font-face {
-    font-family: 'Clown';
-    src: url('../fonts/Clown-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 * {
     margin: 0;
@@ -13,14 +7,15 @@
 }
 
 body {
-    font-family: 'Clown', 'Helvetica Neue', Arial, sans-serif;
+    /* font-family: 'Clown', 'Helvetica Neue', Arial, sans-serif; */
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     background-color: #ffffff; /* Changed from #161616 to white */
-    color: #313030; /* Changed from #ffffff to dark gray */
+    color: #1b1b1b; /* Changed from #ffffff to dark gray */
     line-height: 1.6;
 }
 
 a {
-    color: #313030; /* Changed from #ffffff to dark gray */
+    color: #1b1b1b; /* Changed from #ffffff to dark gray */
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
@@ -70,8 +65,9 @@ a:hover {
     position: relative;
     text-align: center;
     font-weight: 200;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    font-size: .9rem;
 }
 
 /* Styling for the name container in the center of navbar */
@@ -91,7 +87,7 @@ a:hover {
 }
 
 .main-name {
-    font-size: 2.4rem;
+    font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: 2px;
     line-height: 1.2;
@@ -326,17 +322,17 @@ main {
 }
 
 .summary-section {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .section-title {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     position: relative;
     text-align: center; /* Center align the title and underline */
 }
 
 .section-title h2 {
-    font-size: 2rem; /* Slightly smaller font size */
+    font-size: 1.6rem; /* Slightly smaller font size */
     font-weight: 300;
     letter-spacing: 5px;
     text-transform: uppercase;

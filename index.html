@@ -21,7 +21,7 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            margin-bottom: 2rem;
+            /* margin-bottom: 2rem; */
             break-inside: avoid;
             display: block;
             aspect-ratio: auto;
@@ -82,7 +82,7 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            margin-bottom: 2rem;
+            /* margin-bottom: 2rem; */
             aspect-ratio: 16/9;
             cursor: pointer;
         }
@@ -104,11 +104,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0; /* Initially hidden */
+            opacity: 0; 
             transition: opacity 0.3s ease;
         }
 
@@ -131,7 +131,7 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            margin-bottom: 2rem;
+            /* margin-bottom: 2rem; */
             aspect-ratio: 3/2;
             cursor: pointer;
         }
@@ -180,7 +180,7 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            margin-bottom: 2rem;
+            /* margin-bottom: 2rem; */
             aspect-ratio: 3/2;
             cursor: pointer;
         }
@@ -278,16 +278,18 @@
     <!-- Main Navbar - Standard Sticky -->
     <nav class="navbar" id="main-navbar">
         <div class="nav-container">
-            <div class="nav-item"><a href="videos.html" id="videos-link">VIDEO</a></div>
-            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
+            <div class="nav-item"><a href="videos.html" id="videos-link">FILMS
+            </a></div>
+            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTOS</a></div>
             <div class="nav-item name-container">
                 <a href="index.html">
                     <div class="name-wrapper">
                         <div class="main-name">AGUSTIN MARQUEZ</div>
+                        <!-- <div class="sub-name">Filmmaker & Photographer</div> -->
                     </div>
                 </a>
             </div>
-            <div class="nav-item"><a href="paintings.html" id="paintings-link">PAINTING</a></div>
+            <div class="nav-item"><a href="paintings.html" id="paintings-link">PAINTINGS</a></div>
             <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div> 
         </div>
     </nav>
@@ -315,10 +317,9 @@
 
         <!-- Video Section Summary -->
         <section class="summary-section" id="video-summary">
-            <div class="section-title">
-                <h2>VIDEO</h2>
-                <!-- <div class="underline"></div> -->
-            </div>
+            <!-- <div class="section-title">
+                <h2>FILM</h2>
+            </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771577602?h=4159b4eafa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brothers - English trailer"></iframe></div>'>
                     <video class="hover-video" muted loop>
@@ -349,9 +350,9 @@
 
         <!-- Photo Section Summary -->
         <section class="summary-section" id="photo-summary">
-            <div class="section-title">
+            <!-- <div class="section-title">
                 <h2>PHOTO</h2>
-            </div>
+            </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/1.png" alt="Personal">
@@ -379,10 +380,9 @@
 
         <!-- Paintings Section Summary -->
         <section class="summary-section" id="paintings-summary">
-            <div class="section-title">
+            <!-- <div class="section-title">
                 <h2>PAINTINGS</h2>
-                <!-- <div class="underline"></div> -->
-            </div>
+            </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/4.png" alt="Alex">
