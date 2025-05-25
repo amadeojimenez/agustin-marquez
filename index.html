@@ -108,12 +108,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0; 
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         #video-summary .thumbnail-item:hover .video-overlay {
-            opacity: 1; /* Visible on hover */
+            opacity: 1;
+            /* Visible on hover */
         }
 
         #video-summary .video-overlay h3 {
@@ -157,12 +158,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
+            /* Initially hidden */
             transition: opacity 0.3s ease;
         }
 
         #photo-summary .thumbnail-item:hover .photo-overlay {
-            opacity: 1; /* Visible on hover */
+            opacity: 1;
+            /* Visible on hover */
         }
 
         #photo-summary .photo-overlay h3 {
@@ -206,12 +209,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
+            /* Initially hidden */
             transition: opacity 0.3s ease;
         }
 
         #paintings-summary .thumbnail-item:hover .painting-overlay {
-            opacity: 1; /* Visible on hover */
+            opacity: 1;
+            /* Visible on hover */
         }
 
         #paintings-summary .painting-overlay h3 {
@@ -224,15 +229,19 @@
 
         /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
             position: fixed;
-            z-index: 2000; /* Ensure it's on top */
+            z-index: 2000;
+            /* Ensure it's on top */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto; /* Enable scroll if content is too big */
-            background-color: rgba(0,0,0,0.9); /* Black background with opacity */
+            overflow: auto;
+            /* Enable scroll if content is too big */
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Black background with opacity */
         }
 
         .modal-content {
@@ -240,19 +249,22 @@
             margin: auto;
             padding: 0;
             width: 80%;
-            max-width: 1600px; /* Increased max width */
+            max-width: 1600px;
+            /* Increased max width */
             top: 50%;
             transform: translateY(-50%);
         }
-        
-        .modal-content img, .modal-content iframe {
+
+        .modal-content img,
+        .modal-content iframe {
             display: block;
             width: 100%;
             height: auto;
         }
 
         .modal-content iframe {
-            aspect-ratio: 16/9; /* For videos */
+            aspect-ratio: 16/9;
+            /* For videos */
         }
 
         .close-button {
@@ -271,15 +283,19 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        main {
+            position: relative; /* Establishes a positioning context for fake-navbar */
+        }
     </style>
 </head>
 
 <body>
     <!-- Main Navbar - Standard Sticky -->
-    <nav class="navbar" id="main-navbar">
+    <nav class="navbar-true" id="main-navbar">
         <div class="nav-container">
             <div class="nav-item"><a href="videos.html" id="videos-link">FILMS
-            </a></div>
+                </a></div>
             <div class="nav-item"><a href="photos.html" id="photos-link">PHOTOS</a></div>
             <div class="nav-item name-container">
                 <a href="index.html">
@@ -290,7 +306,7 @@
                 </a>
             </div>
             <div class="nav-item"><a href="paintings.html" id="paintings-link">PAINTINGS</a></div>
-            <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div> 
+            <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
         </div>
     </nav>
 
@@ -301,7 +317,8 @@
                 <source src="https://qrkit.es/publico/936/src/img/2025-04-14+Video+Intro.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez" style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+            <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez"
+                style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
             <!-- <div class="overlay"></div> -->
             <!-- <div class="hero-text">
                 <h1>AGUSTIN MARQUEZ</h1>
@@ -314,6 +331,23 @@
         <div id="main-scroll-arrow-container">
             <span class="arrow">&#9660;</span>
         </div>
+        <nav class="navbar-fake" id='fake-navbar'>
+            <div class="nav-container">
+                <div class="nav-item"><a href="videos.html" id="videos-link">FILMS
+                    </a></div>
+                <div class="nav-item"><a href="photos.html" id="photos-link">PHOTOS</a></div>
+                <div class="nav-item name-container">
+                    <a href="index.html">
+                        <div class="name-wrapper">
+                            <div class="main-name">AGUSTIN MARQUEZ</div>
+                            <!-- <div class="sub-name">Filmmaker & Photographer</div> -->
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-item"><a href="paintings.html" id="paintings-link">PAINTINGS</a></div>
+                <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
+            </div>
+        </nav>
 
         <!-- Video Section Summary -->
         <section class="summary-section" id="video-summary">
@@ -321,25 +355,31 @@
                 <h2>FILM</h2>
             </div> -->
             <div class="thumbnails-grid">
-                <div class="thumbnail-item" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771577602?h=4159b4eafa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brothers - English trailer"></iframe></div>'>
+                <div class="thumbnail-item"
+                    data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771577602?h=4159b4eafa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brothers - English trailer"></iframe></div>'>
                     <video class="hover-video" muted loop>
-                        <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/1Brothers.mp4" type="video/mp4">
+                        <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/1Brothers.mp4"
+                            type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <h3>Brothers</h3>
                     </div>
                 </div>
-                <div class="thumbnail-item" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1044715604?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Constanza - English trailer"></iframe></div>'>
+                <div class="thumbnail-item"
+                    data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1044715604?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Constanza - English trailer"></iframe></div>'>
                     <video class="hover-video" muted loop>
-                        <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/2Constanza.mp4" type="video/mp4">
+                        <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/2Constanza.mp4"
+                            type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <h3>Constanza</h3>
                     </div>
                 </div>
-                <div class="thumbnail-item" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/863983798?h=2c5965ce2e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Trailer - The land for yesterday"></iframe></div>'>
+                <div class="thumbnail-item"
+                    data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/863983798?h=2c5965ce2e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Trailer - The land for yesterday"></iframe></div>'>
                     <video class="hover-video" muted loop>
-                        <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/3The-land-for-yesterday.mp4" type="video/mp4">
+                        <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/3The-land-for-yesterday.mp4"
+                            type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <h3>The Land For Yesterday</h3>
@@ -408,7 +448,9 @@
             </div> -->
         </section>
         <footer>
-            <p>&copy; 2025 Agustin Marquez. All Rights Reserved. | <a href="mailto:contact@agustinmarquez.com">contact@agustinmarquez.com</a> | <a href="about.html">About</a></p>
+            <p>&copy; 2025 Agustin Marquez. All Rights Reserved. | <a
+                    href="mailto:contact@agustinmarquez.com">contact@agustinmarquez.com</a> | <a
+                    href="about.html">About</a></p>
         </footer>
     </main>
 
@@ -425,16 +467,16 @@
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         // Video hover functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const videoItems = document.querySelectorAll('#video-summary .thumbnail-item');
-            
+
             videoItems.forEach(item => {
                 const video = item.querySelector('video');
-                
+
                 item.addEventListener('mouseenter', () => {
                     video.play();
                 });
-                
+
                 item.addEventListener('mouseleave', () => {
                     video.pause();
                     video.currentTime = 0;
@@ -502,7 +544,7 @@
         }
 
         // Lightbox Modal Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('lightbox-modal');
             const modalContent = modal.querySelector('.modal-content');
             const closeButton = modal.querySelector('.close-button');
@@ -510,15 +552,15 @@
             const thumbnailItems = document.querySelectorAll('#video-summary .thumbnail-item, #photo-summary .thumbnail-item, #paintings-summary .thumbnail-item');
 
             thumbnailItems.forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     modalContent.innerHTML = ''; // Clear previous content
-                    
+
                     // Check if it's a video item with a Vimeo embed
                     const vimeoEmbed = item.dataset.vimeoEmbed;
                     if (vimeoEmbed) {
                         modalContent.innerHTML = vimeoEmbed;
                         // Adjust modal width for videos if necessary
-                        modal.querySelector('.modal-content').style.maxWidth = '1600px'; 
+                        modal.querySelector('.modal-content').style.maxWidth = '1600px';
                     } else {
                         // It's an image (photo or painting)
                         const img = item.querySelector('img');
@@ -527,7 +569,7 @@
                             largeImage.src = img.src;
                             largeImage.alt = img.alt;
                             modalContent.appendChild(largeImage);
-                             modal.querySelector('.modal-content').style.maxWidth = '1600px'; // Increased for images
+                            modal.querySelector('.modal-content').style.maxWidth = '1600px'; // Increased for images
                         }
                     }
                     modal.style.display = 'block';
@@ -535,13 +577,13 @@
             });
 
             // Close modal when close button is clicked
-            closeButton.addEventListener('click', function() {
+            closeButton.addEventListener('click', function () {
                 modal.style.display = 'none';
                 modalContent.innerHTML = ''; // Clear content
             });
 
             // Close modal when clicking outside the modal content
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                     modalContent.innerHTML = ''; // Clear content
@@ -550,17 +592,39 @@
         });
 
         // Fading Scroll Arrow for Main Section
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const scrollArrowContainer = document.getElementById('main-scroll-arrow-container');
-            const fadeOutThreshold = 20; // Pixels scrolled before arrow starts to fade
+            const fakeNavbarContainer = document.getElementById('fake-navbar');
+            const mainNavbarContainer = document.getElementById('main-navbar');
+            const fadeOutThreshold = 100; // Pixels scrolled before arrow starts to fade
 
-            if (!scrollArrowContainer) return;
-
+            // ´if (!scrollArrowContainer) return;
+            console.log(scrollArrowContainer); // TODO: Remove debug log
             function handleScrollArrow() {
+                console.log(window.scrollY)
+                // console.log(`fadeOutThreshold`,fadeOutThreshold); // TODO: Remove debug log
+                // console.log(`window.scrollY > fadeOutThreshold`,window.scrollY > fadeOutThreshold); // TODO: Remove debug log
                 if (window.scrollY > fadeOutThreshold) {
-                    scrollArrowContainer.style.opacity = '0';
+                    if (scrollArrowContainer) scrollArrowContainer.style.opacity = '0';
                 } else {
-                    scrollArrowContainer.style.opacity = '1';
+                    if (scrollArrowContainer) scrollArrowContainer.style.opacity = '1';
+                }
+                if (window.scrollY > window.innerHeight*(5/6)) {
+                    if (fakeNavbarContainer) fakeNavbarContainer.style.opacity = '0.99';
+                } else if (window.scrollY > window.innerHeight*(3/4)) {
+                    if (fakeNavbarContainer) fakeNavbarContainer.style.opacity = '0.75';
+                } else if (window.scrollY > window.innerHeight/2) {
+                    if (fakeNavbarContainer) fakeNavbarContainer.style.opacity = '0.5';
+                } else {
+                    if (fakeNavbarContainer) fakeNavbarContainer.style.opacity = '0';   
+                }
+                const arrowRect = fakeNavbarContainer.getBoundingClientRect();
+                console.log('---arrowRect.top---',arrowRect.top)
+                console.log(`arrowRect`,arrowRect); // TODO: Remove debug log
+                if (arrowRect.top <= 0) {
+                    mainNavbarContainer.style.opacity = '1';
+                } else {
+                    mainNavbarContainer.style.opacity = '0';
                 }
             }
 

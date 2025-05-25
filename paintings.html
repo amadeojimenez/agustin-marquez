@@ -6,8 +6,8 @@
     <title>Agustin Marquez - Paintings</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Additional styles specific to the paintings page */
-        .painting-intro {
+        /* Additional styles specific to the photos page */
+        .photo-intro {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
@@ -17,7 +17,7 @@
             overflow: hidden;
         }
         
-        .painting-intro h1 {
+        .photo-intro h1 {
             font-size: 4.5rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -27,7 +27,7 @@
             z-index: 2;
         }
         
-        .painting-intro-text {
+        .photo-intro-text {
             flex: 1.5;
             padding-left: 5%;
             padding-top: 2rem;
@@ -35,13 +35,13 @@
             z-index: 2;
         }
         
-        .painting-intro-text p {
+        .photo-intro-text p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
         
-        .painting-intro::before {
+        .photo-intro::before {
             content: '';
             position: absolute;
             width: 150px;
@@ -53,7 +53,7 @@
             opacity: 0.5; /* Increased opacity for light theme */
         }
         
-        .painting-intro::after {
+        .photo-intro::after {
             content: '';
             position: absolute;
             width: 100px;
@@ -64,36 +64,33 @@
             z-index: 1;
         }
         
-        /* Masonry layout for paintings */
-        .paintings-grid {
-            column-count: 3;
-            column-gap: 2rem;
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2rem;
             padding: 0 5%;
             margin-bottom: 80px;
         }
         
-        .painting-item {
+        .photo-item {
             position: relative;
             overflow: hidden;
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            margin-bottom: 2rem;
-            break-inside: avoid;
-            display: block;
         }
         
-        .painting-item:hover {
+        .photo-item:hover {
             transform: translateY(-5px);
         }
         
-        .painting-item img {
+        .photo-item img {
             width: 100%;
-            display: block;
+            height: 250px;
             object-fit: cover;
         }
         
-        .painting-item-overlay {
+        .photo-item-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -103,294 +100,150 @@
             color: white; /* Keeping text white for contrast against dark overlay */
         }
         
-        .painting-item-overlay h3 {
+        .photo-item-overlay h3 {
             margin: 0 0 5px 0;
             font-size: 1.2rem;
         }
         
-        .painting-item-overlay p {
+        .photo-item-overlay p {
             margin: 0;
             font-size: 0.9rem;
             opacity: 0.8;
         }
         
         @media (max-width: 900px) {
-            .paintings-grid {
-                column-count: 2;
+            .photos-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .painting-intro {
+            .photo-intro {
                 flex-direction: column;
             }
             
-            .painting-intro-text {
+            .photo-intro-text {
                 padding-left: 0;
                 padding-top: 2rem;
             }
         }
         
         @media (max-width: 600px) {
-            .paintings-grid {
-                column-count: 1;
+            .photos-grid {
+                grid-template-columns: 1fr;
             }
         }
-        
-        /* Modal styles */
-        .painting-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
+    </style>
+    <style>
+        .carousel-container {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            overflow-y: auto;
-            padding: 50px 0;
-        }
-        
-        .modal-content {
+            height: 100vh; /* Adjust as needed, or set a fixed height */
+            overflow: hidden;
             position: relative;
-            background-color: #fff;
-            margin: auto;
-            max-width: 900px;
-            width: 90%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            animation: modalFade 0.3s ease-in-out;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        @keyframes modalFade {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-image-container {
-            width: 100%;
-            background-color: #000;
-        }
-        
-        .modal-image {
-            width: 100%;
-            max-height: 70vh;
-            object-fit: contain;
-            display: block;
-        }
-        
-        .modal-details {
-            padding: 30px;
-        }
-        
-        .modal-title {
-            font-size: 1.8rem;
-            margin: 0 0 10px 0;
-            text-indent: 20px;
-        }
-        
-        .modal-caption {
-            font-size: 0.9rem;
-            font-style: italic;
-            color: #666;
-            margin: 0 0 20px 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-        
-        .modal-description {
-            margin: 20px 0;
-            line-height: 1.6;
-            color: #333; /* Adding text color to ensure visibility */
-        }
-        
-        .modal-description p {
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .modal-buttons {
-            margin-top: 25px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .modal-buy-btn {
-            padding: 10px 25px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 4px;
             cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
-        
-        .modal-buy-btn:hover:not(:disabled) {
-            background-color: #555;
-        }
-        
-        .modal-buy-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        
-        .modal-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 28px;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.2s;
-            z-index: 1010;
-        }
-        
-        .modal-close-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        
-        /* Prevent body scrolling when modal is open */
-        .modal-open {
-            overflow: hidden;
-        }
-        
-        @media (max-width: 768px) {
-            .modal-content {
-                width: 95%;
-            }
-            
-            .modal-details {
-                padding: 20px;
-            }
-            
-            .modal-title {
-                font-size: 1.5rem;
-            }
         }
 
-        /* Modal navigation buttons */
-        .modal-nav-btn {
+        .carousel-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s;
-            z-index: 1010;
-        }
-        
-        .modal-nav-btn:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .modal-nav-btn:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-        
-        .modal-prev-btn {
-            left: 20px;
-        }
-        
-        .modal-next-btn {
-            right: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .modal-nav-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-            
-            .modal-prev-btn {
-                left: 10px;
-            }
-            
-            .modal-next-btn {
-                right: 10px;
-            }
+            top: 0;
+            left: 0;
+            transition: transform 1s ease-in-out;
         }
     </style>
 </head>
 <body>
     <!-- Navbar Container - Will be filled by JavaScript -->
     <!-- <div id="navbar-container"></div> -->
-    <nav class="navbar" >
+    <nav class="navbar">
         <div class="nav-container">
             <div class="nav-item"><a href="videos.html" id="videos-link">VIDEO</a></div>
-            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
+            <div class="nav-item"><a href="photos.html"  id="photos-link">PHOTO</a></div>
             <div class="nav-item name-container">
                 <a href="index.html">
                     <div class="name-wrapper">
                         <div class="main-name">AGUSTIN MARQUEZ</div>
-                        <div class="subtitle">Filmmaker, Photographer, Painter</div>
+                        <!-- <div class="subtitle">Filmmaker, Photographer, Painter</div> -->
                     </div>
                 </a>
             </div>
-            <div class="nav-item"><a href="paintings.html" id="paintings-link">PAINTING</a></div>
+            <div class="nav-item"><a href="paintings.html" class="active" id="paintings-link">PAINTING</a></div>
             <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
         </div>
     </nav>
 
-    <!-- Introduction Section with Artistic Layout -->
-    <section class="painting-intro">
-        <h1>Paintings</h1>
-        <div class="painting-intro-text">
-            <p>Painting is where my artistic journey began—a practice that continues to be a profound medium of personal expression. Through brushstrokes and color, I explore emotions and concepts that often transcend verbal articulation.</p>
-            <p>My approach to painting is intuitive and experimental, allowing the canvas to become a space for dialogue between conscious technique and subconscious expression. I work primarily with oils and acrylics, though I frequently incorporate mixed media elements to achieve textural depth and visual complexity.</p>
-            <p>The works displayed here represent various periods of my artistic development, from more traditional landscape studies to abstract explorations of color and form. Each painting carries with it a piece of my perception and emotional landscape at the time of its creation.</p>
+        <div class="carousel-container">
+            <img id="still-image" src="media/paintings/1.jpg" alt="Agustin Marquez Photo" >
         </div>
-    </section>
 
-    <!-- Full Paintings Grid -->
-    <div class="paintings-grid" id="paintings-grid">
-        <!-- Paintings will be loaded dynamically from paintingData.json -->
-    </div>
+    <script>
+        const carouselContainer = document.querySelector('.carousel-container');
+        let currentImage = document.getElementById('still-image');
+        let currentIndex = 1;
+        const totalImages = 20;
 
-    <!-- Modal Structure for Painting Details -->
-    <div class="painting-modal" id="painting-modal">
-        <div class="modal-content">
-            <div class="modal-image-container">
-                <img src="" alt="Painting Image" class="modal-image" id="modal-image">
-            </div>
-            <div class="modal-details">
-                <h2 class="modal-title" id="modal-title">Painting Title</h2>
-                <p class="modal-caption" id="modal-caption">Painting Caption</p>
-                <div class="modal-description" id="modal-description">
-                    <p>Description of the painting goes here.</p>
-                </div>
-                <div class="modal-buttons">
-                    <button class="modal-buy-btn" id="modal-buy-btn">Buy Now</button>
-                    <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-                </div>
-            </div>
-            <button class="modal-nav-btn modal-prev-btn" id="modal-prev-btn">&#8249;</button>
-            <button class="modal-nav-btn modal-next-btn" id="modal-next-btn">&#8250;</button>
-        </div>
-    </div>
+        function preloadImage(index) {
+            if (totalImages <= 1) return;
+            const img = new Image();
+            img.src = `media/paintings/${index}.jpg`;
+        }
 
-    <footer>
-        <p>&copy; 2025 Agustin Marquez. All Rights Reserved. | <a href="mailto:contact@agustinmarquez.com">contact@agustinmarquez.com</a> | <a href="about.html">About</a></p>
-    </footer>
+        carouselContainer.addEventListener('click', (event) => {
+            const rect = carouselContainer.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const containerWidth = carouselContainer.offsetWidth;
+            let nextIndex;
+            let slideOutDirection;
+            let slideInDirection;
 
-    <script src="js/main.js"></script>
+            if (clickX < containerWidth / 3) {
+                // Go backward
+                nextIndex = (currentIndex - 1 + totalImages) % totalImages;
+                slideOutDirection = 'translateX(100%)'; // Current slides out to the right
+                slideInDirection = '-100%'; // New slides in from the left
+                console.log('Carousel clicked left - going back'); // TODO
+            } else {
+                // Go forward
+                nextIndex = (currentIndex + 1) % totalImages;
+                slideOutDirection = 'translateX(-100%)'; // Current slides out to the left
+                slideInDirection = '100%'; // New slides in from the right
+                console.log('Carousel clicked center/right - going forward'); // TODO
+            }
+            
+            const nextImageElement = document.createElement('img');
+            nextImageElement.src = `media/paintings/${nextIndex}.jpg`;
+            nextImageElement.alt = `Agustin Marquez Photo ${nextIndex + 1}`;
+            nextImageElement.style.transform = `translateX(${slideInDirection})`;
+            
+            
+            carouselContainer.appendChild(nextImageElement);
+            void nextImageElement.offsetWidth; 
+            
+            currentImage.style.transform = slideOutDirection;
+            nextImageElement.style.transform = 'translateX(0%)';
+            
+            setTimeout(() => {
+                if (currentImage.parentNode === carouselContainer) {
+                    carouselContainer.removeChild(currentImage);
+                }
+                currentImage = nextImageElement;
+                currentIndex = nextIndex;
+                // Preload the appropriate next or previous image for the *next* click
+                if (clickX < containerWidth / 3) {
+                    preloadImage((currentIndex - 1 + totalImages) % totalImages);
+                } else {
+                    preloadImage((currentIndex + 1) % totalImages);
+                }
+            }, 1000);
+        });
+
+        if (totalImages > 0) {
+            preloadImage((currentIndex + 1) % totalImages); // Preload next
+            if (totalImages > 1) {
+                 preloadImage((currentIndex - 1 + totalImages) % totalImages); // Preload previous as well
+            }
+        }
+    </script>
 </body>
+
 </html>
