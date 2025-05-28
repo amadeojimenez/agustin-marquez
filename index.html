@@ -9,10 +9,10 @@
     <style>
         /* Masonry layout for paintings in homepage */
         #paintings-summary .thumbnails-grid {
-            column-count: 3;
-            column-gap: 2rem;
-            padding: 0;
-            margin-bottom: 40px;
+            /* column-count: 3; */ /* Removed for standard grid */
+            /* column-gap: 2rem; */ /* Handled by general .thumbnails-grid or section-specific */
+            /* padding: 0; */ /* Handled by general .thumbnails-grid or section-specific */
+            /* margin-bottom: 40px; */ /* Handled by general .thumbnails-grid or section-specific */
         }
 
         #paintings-summary .thumbnail-item {
@@ -21,10 +21,10 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            /* margin-bottom: 2rem; */
-            break-inside: avoid;
-            display: block;
-            aspect-ratio: auto;
+            /* margin-bottom: 2rem; */ /* This was the masonry specific one */
+            /* break-inside: avoid; */ /* Removed masonry specific */
+            /* display: block; */ /* Removed masonry specific */
+            /* aspect-ratio: auto; */ /* Removed masonry specific, will be set to 16/9 later */
             /* Override potential fixed aspect ratio */
         }
 
@@ -34,8 +34,7 @@
 
         #paintings-summary .thumbnail-item img {
             width: 100%;
-            height: auto;
-            /* Allow image height to adjust */
+            /* height: auto; */ /* Removed masonry specific, will be set to 100% later */
             display: block;
             object-fit: cover;
             /* Keep cover, but height: auto allows aspect ratio */
@@ -136,7 +135,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             /* margin-bottom: 2rem; */
-            aspect-ratio: 3/2;
+            aspect-ratio: 16/9; /* Changed from 3/2 to 16/9 */
             cursor: pointer;
         }
 
@@ -146,7 +145,7 @@
 
         #photo-summary .thumbnail-item img {
             width: 100%;
-            height: 100%;
+            height: 100%; /* Ensure image fills the 16/9 container */
             object-fit: cover;
             display: block;
         }
@@ -181,14 +180,14 @@
         }
 
         /* Paintings section styles */
-        #paintings-summary .thumbnail-item {
+        #paintings-summary .thumbnail-item { /* This is the second declaration, ensure it aligns */
             position: relative;
             overflow: hidden;
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             /* margin-bottom: 2rem; */
-            aspect-ratio: 3/2;
+            aspect-ratio: 16/9; /* Set to 16/9 for consistency */
             cursor: pointer;
         }
 
@@ -196,9 +195,9 @@
             transform: translateY(-5px);
         }
 
-        #paintings-summary .thumbnail-item img {
+        #paintings-summary .thumbnail-item img { /* This is the second declaration */
             width: 100%;
-            height: 100%;
+            height: 100%; /* Ensure image fills the 16/9 container */
             object-fit: cover;
             display: block;
         }
@@ -238,17 +237,32 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 10; /* Ensure it's above the video but below modal if any */
-            color: white;
-            font-size: 2.2rem; /* Adjust as needed */
+            z-index: 10;
+            /* color: white; */
             text-align: center;
-            font-weight: 300;
+            display: inline-block;
+            color: rgb(40, 40, 40) !important;
             /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); Optional: for better readability */
         }
 
-        .hero-text-overlay-sub {
-            font-size: 1.3rem;
+        /* New style for the main title paragraph */
+        .hero-overlay-main-title {
+            font-size: 2.2rem;
             font-weight: 300;
+            white-space: nowrap;
+        }
+
+        .title-overlay-black {
+            color: rgb(40, 40, 40) !important;
+        }
+
+        .hero-text-overlay-sub {
+            font-size: 1.4rem;
+            font-weight: 300;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            letter-spacing: 0.4em;
         }
 
         /* Modal Styles */
@@ -344,10 +358,12 @@
             <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez"
                 style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
             <!-- <div class="overlay"></div> -->
-            <!-- <div class="hero-text">
-                <h1>AGUSTIN MARQUEZ</h1>
-            </div> -->
-            <div class="hero-text-overlay"><p>AGUSTIN MARQUEZ</p><p class="hero-text-overlay-sub">Film | Photo | Sketch</p></div>
+            <div class="hero-text-overlay" id="title-overlay">
+                <p class="hero-overlay-main-title">AGUSTIN MARQUEZ GOMEZ</p>
+                <div class="hero-text-overlay-sub">
+                    <span>Filmaker</span><span>&</span></span>Photographer</span>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -566,6 +582,8 @@
             const stillImage = document.getElementById('still-image');
             video.style.display = 'none';
             stillImage.style.display = 'block';
+            const title = document.getElementById('title-overlay');
+            title.classList.add('title-overlay-black');
         }
 
         // Lightbox Modal Functionality
