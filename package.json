@@ -1,0 +1,22 @@
+{
+  "name": "agustin-marquez",
+  "version": "1.0.0",
+  "description": "hola",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amadeojimenez/agustin-marquez.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amadeojimenez/agustin-marquez/issues"
+  },
+  "homepage": "https://github.com/amadeojimenez/agustin-marquez#readme",
+  "dependencies": {
+    "@glidejs/glide": "^3.7.1"
+  }
+}

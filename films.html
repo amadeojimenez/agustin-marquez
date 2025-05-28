@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agustin Marquez - Films</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Required Core stylesheet -->
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+
+    <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
+
+    <!-- Optional Theme stylesheet -->
+    <!-- <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css"> -->
+    <style>
+        /* Styles for Glide carousel, adjusted from original */
+        .glide {
+            margin-top: 70px;
+            /* Account for fixed navbar */
+            height: calc(100vh - 70px);
+            /* Fill remaining viewport height */
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: white; /* Changed to white */
+            cursor: pointer;
+        }
+
+        .glide__track {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glide__slides {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .glide__slide {
+            width: 100%;
+            height: 100%;
+            display: flex; /* For layout */
+            align-items: center; /* Vertically center content */
+            justify-content: center; /* Horizontally center content */
+            padding: 20px; /* Add some padding around the content */
+            box-sizing: border-box;
+        }
+
+        .slide-content-wrapper {
+            display: flex;
+            width: 90%; /* Adjust as needed */
+            max-width: 1200px; /* Max width for the content */
+            height: auto; /* Adjust based on content */
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .slide-image-container {
+            flex: 1.5; /* Adjust ratio as needed */
+            margin-right: 20px; /* Space between image and video/text */
+        }
+
+        .slide-image-container img {
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 150px); /* Adjust based on navbar and padding */
+            object-fit: contain;
+            display: block;
+        }
+
+        .slide-details-container {
+            flex: 1; /* Adjust ratio as needed */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-video-preview {
+            width: 100%;
+            aspect-ratio: 16/9; /* Maintain video aspect ratio */
+            margin-bottom: 20px; /* Space between video and text */
+            border-radius: 8px; /* Rounded corners for video preview */
+            overflow: hidden; /* Ensure video respects border-radius */
+        }
+        
+        .slide-video-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333; /* Dark text color for readability on white background */
+        }
+
+        /* Adjust arrow colors for white background */
+        .glide button[data-glide-dir] {
+            background-color: rgba(200, 200, 200, 0.5); /* Lighter background for arrows */
+            color: #333; /* Darker arrow color */
+        }
+        .glide button[data-glide-dir]:hover {
+            background-color: rgba(180, 180, 180, 0.8);
+        }
+
+        /* Adjust bullet colors for white background */
+        .glide__bullet {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .glide__bullet:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .glide__bullet--active {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+    <style>
+        /* === Glide Controls Styling === */
+
+        /* Individual Arrow Buttons */
+        .glide button[data-glide-dir] {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            /* Semi-transparent black */
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            /* Adjust size of arrows */
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            /* Slightly rounded corners */
+            transition: background-color 0.3s ease;
+        }
+
+        .glide button[data-glide-dir]:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Darker on hover */
+        }
+
+        .glide button[data-glide-dir="<"] {
+            left: 20px;
+            /* Adjust as needed */
+        }
+
+        .glide button[data-glide-dir=">"] {
+            right: 20px;
+            /* Adjust as needed */
+        }
+
+        /* Bullet Navigation Container */
+        .glide__bullets {
+            position: absolute;
+            bottom: 20px;
+            /* Distance from bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 8px;
+            /* Space between bullets */
+        }
+
+        /* Individual Bullets */
+        .glide__bullet {
+            background-color: rgba(255, 255, 255, 0.4);
+            /* Semi-transparent white */
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            /* Circular bullets */
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .glide__bullet:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Active Bullet */
+        .glide__bullet--active {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* More opaque white */
+        }
+    </style>
+    <style>
+        /* Additional styles specific to the photos page */
+        .photo-intro {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin: 80px 0;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-intro h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .photo-intro-text {
+            flex: 1.5;
+            padding-left: 5%;
+            padding-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .photo-intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .photo-intro::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #ddd; /* Changed from #333 to lighter gray */
+            top: -30px;
+            left: 40%;
+            z-index: 1;
+            opacity: 0.5; /* Increased opacity for light theme */
+        }
+        
+        .photo-intro::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(200, 200, 200, 0.3); /* Lighter background */
+            bottom: 20px;
+            right: 10%;
+            z-index: 1;
+        }
+        
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 80px;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .photo-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            color: white; /* Keeping text white for contrast against dark overlay */
+        }
+        
+        .photo-item-overlay h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+        
+        .photo-item-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 900px) {
+            .photos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .photo-intro {
+                flex-direction: column;
+            }
+            
+            .photo-intro-text {
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .photos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container - Will be filled by JavaScript -->
+    <!-- <div id="navbar-container"></div> -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-item"><a href="films.html" id="videos-link" class="active">FILM</a></div>
+            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
+            <div class="nav-item name-container">
+                <a href="index.html">
+                    <div class="name-wrapper">
+                        <div class="main-name">AGUSTIN MARQUEZ</div>
+                        <!-- <div class="subtitle">Filmmaker, Photographer, Painter</div> -->
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCHES</a></div>
+            <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
+        </div>
+    </nav>
+
+    <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                <li class="glide__slide">
+                    <div class="slide-content-wrapper">
+                        <div class="slide-image-container">
+                            <img src="media/misc/brothers/cartel.png" alt="Brothers Film Poster">
+                        </div>
+                        <div class="slide-details-container">
+                            <div class="slide-video-preview">
+                                <video muted loop autoplay playsinline>
+                                    <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/1Brothers.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="slide-text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="glide__slide">
+                    <div class="slide-content-wrapper">
+                        <div class="slide-image-container">
+                             <img src="media/misc/constanza/cartel.jpg" alt="Constanza Film Poster">
+                        </div>
+                        <div class="slide-details-container">
+                            <div class="slide-video-preview">
+                                <video muted loop autoplay playsinline>
+                                     <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/2Constanza.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="slide-text">
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="glide__slide">
+                    <div class="slide-content-wrapper">
+                        <div class="slide-image-container">
+                            <img src="media/misc/yesterday/cartel.jpg" alt="The Land for Yesterday Film Poster">
+                        </div>
+                        <div class="slide-details-container">
+                            <div class="slide-video-preview">
+                                <video muted loop autoplay playsinline>
+                                    <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/3The-land-for-yesterday.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="slide-text">
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="glide__slide">
+                    <div class="slide-content-wrapper">
+                        <div class="slide-image-container">
+                            <img src="media/misc/barraca/cartel.png" alt="Barraca Film Poster">
+                        </div>
+                        <div class="slide-details-container">
+                            <div class="slide-video-preview">
+                                <video muted loop autoplay playsinline>
+                                    <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/1Brothers.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="slide-text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- Add more slides as needed -->
+            </ul>
+        </div>
+        <div data-glide-el="controls">
+            <button data-glide-dir="<">«</button>
+            <button data-glide-dir=">">»</button>
+        </div>
+    </div>
+
+    <script>
+        const glide = new Glide('.glide', {
+            animationDuration: 1000,
+            animationTimingFunc: 'ease-in-out',
+            perView: 1,
+            gap: 0,
+            hoverpause: false, // Keep autoplaying on hover for film page
+            keyboard: true,
+            type: 'carousel'
+        }).mount();
+
+        // No lazy loading needed for this page as content is more complex and fewer slides
+        // const allSlideElements = document.querySelectorAll('.glide__slide');
+        // const totalNumberOfSlides = allSlideElements.length;
+        // const lazyLoadWindowRadius = 4; // Load current +/- this many slides
+
+        // function manageSlideImageLoading(currentIndex) {
+        //     allSlideElements.forEach((slideLi, i) => {
+        //         const img = slideLi.querySelector('.slide-image-container img');
+        //         if (!img) return;
+
+        //         let diff = Math.abs(i - currentIndex);
+        //         if (diff > totalNumberOfSlides / 2) {
+        //             diff = totalNumberOfSlides - diff;
+        //         }
+
+        //         // For this page, we might always want images loaded or handle differently
+        //         // if (diff <= lazyLoadWindowRadius) {
+        //         //     if (img.getAttribute('loading') === 'lazy') {
+        //         //         img.setAttribute('loading', 'eager');
+        //         //     }
+        //         // }
+        //     });
+        // }
+
+        // glide.on('mount.after', () => {
+        //     manageSlideImageLoading(glide.index);
+        //     // Autoplay videos in the current slide
+        //     const currentSlideVideo = allSlideElements[glide.index].querySelector('.slide-video-preview video');
+        //     if (currentSlideVideo) currentSlideVideo.play();
+        // });
+
+        // glide.on('run.before', (event) => {
+        //     // Pause video in the outgoing slide
+        //     const previousSlideVideo = allSlideElements[glide.index].querySelector('.slide-video-preview video');
+        //     if (previousSlideVideo) previousSlideVideo.pause();
+        // });
+        
+        // glide.on('run.after', () => {
+        //     // setTimeout(() => {
+        //     //     manageSlideImageLoading(glide.index);
+        //     // }, 600);
+        //     // Autoplay video in the new current slide
+        //     const newSlideVideo = allSlideElements[glide.index].querySelector('.slide-video-preview video');
+        //     if (newSlideVideo) newSlideVideo.play();
+        // });
+
+        // Ensure videos in preview start playing
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('.slide-video-preview video');
+            videos.forEach(video => {
+                video.play().catch(error => {
+                    console.log("Video autoplay was prevented:", error);
+                    // Optionally, add a play button overlay if autoplay is blocked
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html> 
