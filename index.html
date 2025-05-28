@@ -232,6 +232,25 @@
             font-weight: 400;
         }
 
+        /* Hero Video Text Overlay */
+        .hero-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; /* Ensure it's above the video but below modal if any */
+            color: white;
+            font-size: 2.2rem; /* Adjust as needed */
+            text-align: center;
+            font-weight: 300;
+            /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); Optional: for better readability */
+        }
+
+        .hero-text-overlay-sub {
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -297,7 +316,7 @@
 
 <body>
     <!-- Main Navbar - Standard Sticky -->
-    <nav class="navbar-true" id="main-navbar">
+    <nav class="navbar-true" id="main-navbar" style="opacity: 0;">
         <div class="nav-container">
             <div class="nav-item"><a href="films.html" id="videos-link">FILM
                 </a></div>
@@ -319,7 +338,7 @@
     <header class="hero">
         <div class="video-container">
             <video autoplay muted id="hero-video" onended="showStillImage()">
-                <source src="https://qrkit.es/publico/936/src/img/2025-04-14+Video+Intro.mov" type="video/mp4">
+                <source src="https://qrkit.es/publico/936/src/img/intro.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez"
@@ -328,6 +347,7 @@
             <!-- <div class="hero-text">
                 <h1>AGUSTIN MARQUEZ</h1>
             </div> -->
+            <div class="hero-text-overlay"><p>AGUSTIN MARQUEZ</p><p class="hero-text-overlay-sub">Film | Photo | Sketch</p></div>
         </div>
     </header>
 
