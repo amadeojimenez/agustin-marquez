@@ -55,6 +55,8 @@
         #paintings-summary .thumbnail-item-overlay h3 {
             margin: 0 0 5px 0;
             font-size: 1.2rem;
+
+            font-weight: 400;
         }
 
         #paintings-summary .thumbnail-item-overlay p {
@@ -123,6 +125,7 @@
             text-align: center;
             margin: 0;
             padding: 1rem;
+            font-weight: 400;
         }
 
         /* Photo section styles */
@@ -174,6 +177,7 @@
             text-align: center;
             margin: 0;
             padding: 1rem;
+            font-weight: 400;
         }
 
         /* Paintings section styles */
@@ -225,6 +229,7 @@
             text-align: center;
             margin: 0;
             padding: 1rem;
+            font-weight: 400;
         }
 
         /* Modal Styles */
@@ -296,7 +301,7 @@
         <div class="nav-container">
             <div class="nav-item"><a href="films.html" id="videos-link">FILM
                 </a></div>
-            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTOS</a></div>
+            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
             <div class="nav-item name-container">
                 <a href="index.html">
                     <div class="name-wrapper">
@@ -305,7 +310,7 @@
                     </div>
                 </a>
             </div>
-            <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCHES</a></div>
+            <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCH</a></div>
             <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
         </div>
     </nav>
@@ -335,7 +340,7 @@
             <div class="nav-container">
                 <div class="nav-item"><a href="films.html" id="videos-link">FILM
                     </a></div>
-                <div class="nav-item"><a href="photos.html" id="photos-link">PHOTOS</a></div>
+                <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
                 <div class="nav-item name-container">
                     <a href="index.html">
                         <div class="name-wrapper">
@@ -344,7 +349,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCHES</a></div>
+                <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCH</a></div>
                 <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
             </div>
         </nav>
@@ -397,19 +402,19 @@
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/1.png" alt="Personal">
                     <div class="photo-overlay">
-                        <h3>Personal</h3>
+                        <h3>Photo</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/2.png" alt="Art">
                     <div class="photo-overlay">
-                        <h3>Art</h3>
+                        <h3>Photo</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/3.png" alt="Africa">
                     <div class="photo-overlay">
-                        <h3>Africa</h3>
+                        <h3>Photo</h3>
                     </div>
                 </div>
             </div>
@@ -421,25 +426,25 @@
         <!-- Paintings Section Summary -->
         <section class="summary-section" id="paintings-summary">
             <!-- <div class="section-title">
-                <h2>SKETCHES</h2>
+                <h2>SKETCH</h2>
             </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/4.png" alt="Alex">
                     <div class="painting-overlay">
-                        <h3>Alex</h3>
+                        <h3>Sketch</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/5.png" alt="Arya">
                     <div class="painting-overlay">
-                        <h3>Arya</h3>
+                        <h3>Sketch</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
                     <img src="https://qrkit.es/publico/936/src/img/6.png" alt="Sketches">
                     <div class="painting-overlay">
-                        <h3>Sketches</h3>
+                        <h3>Sketch</h3>
                     </div>
                 </div>
             </div>
@@ -549,30 +554,33 @@
             const modalContent = modal.querySelector('.modal-content');
             const closeButton = modal.querySelector('.close-button');
 
-            const thumbnailItems = document.querySelectorAll('#video-summary .thumbnail-item, #photo-summary .thumbnail-item, #paintings-summary .thumbnail-item');
-
-            thumbnailItems.forEach(item => {
+            // Handle Video Thumbnails (open modal)
+            const videoThumbnailItems = document.querySelectorAll('#video-summary .thumbnail-item');
+            videoThumbnailItems.forEach(item => {
                 item.addEventListener('click', function () {
                     modalContent.innerHTML = ''; // Clear previous content
-
-                    // Check if it's a video item with a Vimeo embed
                     const vimeoEmbed = item.dataset.vimeoEmbed;
                     if (vimeoEmbed) {
                         modalContent.innerHTML = vimeoEmbed;
-                        // Adjust modal width for videos if necessary
                         modal.querySelector('.modal-content').style.maxWidth = '1600px';
-                    } else {
-                        // It's an image (photo or painting)
-                        const img = item.querySelector('img');
-                        if (img) {
-                            const largeImage = document.createElement('img');
-                            largeImage.src = img.src;
-                            largeImage.alt = img.alt;
-                            modalContent.appendChild(largeImage);
-                            modal.querySelector('.modal-content').style.maxWidth = '1600px'; // Increased for images
-                        }
+                        modal.style.display = 'block';
                     }
-                    modal.style.display = 'block';
+                });
+            });
+
+            // Handle Photo Thumbnails (redirect to photos.html)
+            const photoThumbnailItems = document.querySelectorAll('#photo-summary .thumbnail-item');
+            photoThumbnailItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    window.location.href = 'photos.html';
+                });
+            });
+
+            // Handle Paintings Thumbnails (redirect to paintings.html)
+            const paintingThumbnailItems = document.querySelectorAll('#paintings-summary .thumbnail-item');
+            paintingThumbnailItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    window.location.href = 'paintings.html';
                 });
             });
 

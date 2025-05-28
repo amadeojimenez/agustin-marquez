@@ -117,6 +117,59 @@
         .glide__bullet--active {
             background-color: rgba(0, 0, 0, 0.6);
         }
+
+        /* Modal Styles - Copied from index.html */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 2000;
+            /* Ensure it's on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            /* Enable scroll if content is too big */
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Black background with opacity */
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 80%;
+            max-width: 1600px;
+            /* Increased max width */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .modal-content iframe {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            /* For videos */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
     <style>
         /* === Glide Controls Styling === */
@@ -335,7 +388,7 @@
                     </div>
                 </a>
             </div>
-            <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCHES</a></div>
+            <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCH</a></div>
             <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
         </div>
     </nav>
@@ -349,7 +402,7 @@
                             <img src="media/misc/brothers/cartel.png" alt="Brothers Film Poster">
                         </div>
                         <div class="slide-details-container">
-                            <div class="slide-video-preview">
+                            <div class="slide-video-preview" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771577602?h=4159b4eafa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brothers - English trailer"></iframe></div>'>
                                 <video muted loop autoplay playsinline>
                                     <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/1Brothers.mp4" type="video/mp4">
                                 </video>
@@ -366,7 +419,7 @@
                              <img src="media/misc/constanza/cartel.jpg" alt="Constanza Film Poster">
                         </div>
                         <div class="slide-details-container">
-                            <div class="slide-video-preview">
+                            <div class="slide-video-preview" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1044715604?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Constanza - English trailer"></iframe></div>'>
                                 <video muted loop autoplay playsinline>
                                      <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/2Constanza.mp4" type="video/mp4">
                                 </video>
@@ -383,7 +436,7 @@
                             <img src="media/misc/yesterday/cartel.jpg" alt="The Land for Yesterday Film Poster">
                         </div>
                         <div class="slide-details-container">
-                            <div class="slide-video-preview">
+                            <div class="slide-video-preview" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/863983798?h=2c5965ce2e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Trailer - The land for yesterday"></iframe></div>'>
                                 <video muted loop autoplay playsinline>
                                     <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/3The-land-for-yesterday.mp4" type="video/mp4">
                                 </video>
@@ -400,7 +453,7 @@
                             <img src="media/misc/barraca/cartel.png" alt="Barraca Film Poster">
                         </div>
                         <div class="slide-details-container">
-                            <div class="slide-video-preview">
+                            <div class="slide-video-preview" data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771577602?h=4159b4eafa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brothers - English trailer"></iframe></div>'>
                                 <video muted loop autoplay playsinline>
                                     <source src="https://qrkit.es/publico/936/src/img/media/m_video_mp4/1Brothers.mp4" type="video/mp4">
                                 </video>
@@ -420,6 +473,15 @@
         </div>
     </div>
 
+    <!-- Modal Structure -->
+    <div id="lightbox-modal" class="modal">
+        <span class="close-button">&times;</span>
+        <div class="modal-content">
+            <!-- Content (image or video) will be injected here by JavaScript -->
+        </div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         const glide = new Glide('.glide', {
             animationDuration: 1000,
@@ -477,7 +539,7 @@
         //     if (newSlideVideo) newSlideVideo.play();
         // });
 
-        // Ensure videos in preview start playing
+        // Ensure videos in preview start playing and setup modal listeners
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('.slide-video-preview video');
             videos.forEach(video => {
@@ -485,6 +547,43 @@
                     console.log("Video autoplay was prevented:", error);
                     // Optionally, add a play button overlay if autoplay is blocked
                 });
+            });
+
+            const modal = document.getElementById('lightbox-modal');
+            const modalContent = modal.querySelector('.modal-content');
+            const closeButton = modal.querySelector('.close-button');
+            const videoPreviewItems = document.querySelectorAll('.slide-video-preview');
+
+            videoPreviewItems.forEach(item => {
+                item.style.cursor = 'pointer'; // Add pointer cursor to indicate clickability
+                item.addEventListener('click', function() {
+                    modalContent.innerHTML = ''; // Clear previous content
+                    const vimeoEmbed = item.dataset.vimeoEmbed;
+                    if (vimeoEmbed) {
+                        modalContent.innerHTML = vimeoEmbed;
+                        modal.querySelector('.modal-content').style.maxWidth = '1600px';
+                        modal.style.display = 'block';
+
+                        // Optional: Pause Glide autoplay when modal is open
+                        glide.pause();
+                    }
+                });
+            });
+
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                modalContent.innerHTML = ''; // Clear content
+                // Optional: Resume Glide autoplay when modal is closed
+                glide.play();
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    modalContent.innerHTML = ''; // Clear content
+                    // Optional: Resume Glide autoplay when modal is closed
+                    glide.play();
+                }
             });
         });
 
