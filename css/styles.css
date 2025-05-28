@@ -104,6 +104,7 @@ a:hover {
     margin-bottom: 6px;
     margin-top: 6px;
     font-size: .9rem;
+    letter-spacing: 0.1em;
 }
 
 /* Styling for the name container in the center of navbar */
@@ -233,6 +234,7 @@ a:hover {
     height: 1px;
     background-color: currentColor;
     transition: transform 0.3s ease;
+    
 }
 
 /* Hover underline effect for non-active links */
