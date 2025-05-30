@@ -7,7 +7,7 @@
 body {
     /* font-family: 'Clown', 'Helvetica Neue', Arial, sans-serif; */
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: rgb(248, 248, 248);
     /* Changed from #161616 to white */
     color: #1b1b1b;
     /* Changed from #ffffff to dark gray */
@@ -34,13 +34,32 @@ a:hover {
     width: 100%;
     z-index: 1000;
     padding: 16px 0;
-    background-color: rgba(255, 255, 255);
+    background-color: rgb(248, 248, 248);
     /* backdrop-filter: blur(5px); */
     transition: opacity 0.3s ease;
     /* Changed from all to opacity for initial fade-in if needed */
     /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
     opacity: 1;
     /* Ensure it's visible by default */
+}
+.navbar.dark {
+    position: fixed;
+    /* Always fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 0;
+    background-color: rgb(12, 12, 12);
+    /* backdrop-filter: blur(5px); */
+    transition: opacity 0.3s ease;
+    /* Changed from all to opacity for initial fade-in if needed */
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    opacity: 1;
+    /* Ensure it's visible by default */
+    a {
+        color: #ffffff;
+    }
 }
 
 .navbar-true {
@@ -51,7 +70,7 @@ a:hover {
     width: 100%;
     z-index: 1005;
     padding: 16px 0;
-    background-color: rgba(255, 255, 255);
+    background-color: rgb(248, 248, 248);
     /* backdrop-filter: blur(5px); */
 
     /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
@@ -66,7 +85,8 @@ a:hover {
     width: 100%;
     z-index: 1000;
     padding: 16px 0;
-    background-color: rgba(255, 255, 255);
+    margin-top: 16px;
+    background-color: rgb(248, 248, 248);
     /* backdrop-filter: blur(5px); */
     transition: opacity 0.8s ease;
     /* Changed from all to opacity for initial fade-in if needed */
@@ -77,7 +97,7 @@ a:hover {
 
 /* Light theme for navbar */
 .navbar.light-theme {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgb(248, 248, 248);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -361,11 +381,11 @@ a:hover {
 main {
     max-width: 100%;
     margin: 0 auto;
-    padding: 80px 30px 0px 30px;
+    padding: 100px 30px 0px 30px;
     position: relative;
     z-index: 2;
     /* Ensures content sits above the fixed video */
-    background-color: #ffffff;
+    background-color: rgb(248, 248, 248);
 }
 
 .summary-section {

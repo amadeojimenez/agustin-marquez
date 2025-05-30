@@ -15,14 +15,14 @@
     <style>
         /* Styles for Glide carousel, adjusted from original */
         .glide {
-            margin-top: 70px;
+            margin-top: 68px;
             /* Account for fixed navbar */
-            height: calc(100vh - 70px);
+            height: calc(100vh - 68px);
             /* Fill remaining viewport height */
             width: 100%;
             position: relative;
             overflow: hidden;
-            background-color: black;
+            background-color: rgb(12, 12, 12);
             cursor: pointer;
         }
 
@@ -39,6 +39,8 @@
             margin: 0;
             padding: 0;
             list-style-type: none;
+            padding: 40px 0px;
+
         }
 
         .glide__slide {
@@ -57,26 +59,36 @@
         /* === Glide Controls Styling === */
 
         /* Individual Arrow Buttons */
+      
+        /* Individual Arrow Buttons */
         .glide button[data-glide-dir] {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgb(248, 248, 248, 0);
             /* Semi-transparent black */
-            color: white;
+            color: rgb(248, 248, 248);
             border: none;
-            padding: 15px 20px;
-            font-size: 1.5rem;
+            font-size: 2.0rem;
             /* Adjust size of arrows */
             cursor: pointer;
             z-index: 10;
             border-radius: 5px;
             /* Slightly rounded corners */
-            transition: background-color 0.3s ease;
+            transition: font-size 0.3s ease;
+        }
+
+        .glide button[data-glide-dir=">"] {
+            padding: 200px 20px 200px 300px;
+        }
+        .glide button[data-glide-dir="<"] {
+            padding: 200px 300px 200px 20px;
         }
 
         .glide button[data-glide-dir]:hover {
-            background-color: rgba(0, 0, 0, 0.6);
+            /* background-color: rgba(0, 0, 0, 0.6); */
+            background-color: rgb(248, 248, 248, 0);
+            font-size: 2.5rem;
             /* Darker on hover */
         }
 
@@ -90,42 +102,7 @@
             /* Adjust as needed */
         }
 
-        /* Bullet Navigation Container */
-        .glide__bullets {
-            position: absolute;
-            bottom: 20px;
-            /* Distance from bottom */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            gap: 8px;
-            /* Space between bullets */
-        }
-
-        /* Individual Bullets */
-        .glide__bullet {
-            background-color: rgba(255, 255, 255, 0.4);
-            /* Semi-transparent white */
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            /* Circular bullets */
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .glide__bullet:hover {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Active Bullet */
-        .glide__bullet--active {
-            background-color: rgba(255, 255, 255, 0.9);
-            /* More opaque white */
-        }
+        
     </style>
     <style>
         /* Additional styles specific to the photos page */
@@ -334,8 +311,8 @@
             </ul>
         </div>
         <div data-glide-el="controls">
-            <button data-glide-dir="<">«</button>
-            <button data-glide-dir=">">»</button>
+            <button data-glide-dir="<">&#8249;</button>
+            <button data-glide-dir=">">&#8250;</button>
         </div>
     </div>
 
