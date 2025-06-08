@@ -207,173 +207,65 @@
             right: 20px;
             /* Adjust as needed */
         }
-
-        /* Bullet Navigation Container */
-        .glide__bullets {
-            position: absolute;
-            bottom: 20px;
-            /* Distance from bottom */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            gap: 8px;
-            /* Space between bullets */
-        }
-
-        /* Individual Bullets */
-        .glide__bullet {
-            background-color: rgba(255, 255, 255, 0.4);
-            /* Semi-transparent white */
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            /* Circular bullets */
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .glide__bullet:hover {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Active Bullet */
-        .glide__bullet--active {
-            background-color: rgba(255, 255, 255, 0.9);
-            /* More opaque white */
-        }
     </style>
     <style>
-        /* Additional styles specific to the photos page */
-        .photo-intro {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            margin: 80px 0;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .photo-intro h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin: 0;
-            flex: 1;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .photo-intro-text {
-            flex: 1.5;
-            padding-left: 5%;
-            padding-top: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .photo-intro-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .photo-intro::before {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border: 2px solid #ddd; /* Changed from #333 to lighter gray */
-            top: -30px;
-            left: 40%;
-            z-index: 1;
-            opacity: 0.5; /* Increased opacity for light theme */
-        }
-        
-        .photo-intro::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: rgba(200, 200, 200, 0.3); /* Lighter background */
-            bottom: 20px;
-            right: 10%;
-            z-index: 1;
-        }
-        
-        .photos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 2rem;
-            padding: 0 5%;
-            margin-bottom: 80px;
-        }
-        
-        .photo-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .photo-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .photo-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        
-        .photo-item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 20px;
-            color: white; /* Keeping text white for contrast against dark overlay */
-        }
-        
-        .photo-item-overlay h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.2rem;
-        }
-        
-        .photo-item-overlay p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 900px) {
-            .photos-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .photo-intro {
-                flex-direction: column;
-            }
-            
-            .photo-intro-text {
-                padding-left: 0;
-                padding-top: 2rem;
-            }
-        }
-        
         @media (max-width: 600px) {
-            .photos-grid {
-                grid-template-columns: 1fr;
+            .glide {
+                height: auto;
+            }
+            .glide__slide {
+                height: auto;
+                align-items: flex-start;
+                padding: 20px 0 60px 0;
+            }
+            .slide-content-wrapper {
+                flex-direction: column;
+                width: 90%;
+            }
+            .slide-image-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 100%;
+                flex: initial;
+            }
+            .slide-details-container {
+                width: 100%;
+                flex: initial;
+            }
+            .slide-image-container img {
+                max-height: initial;
+            }
+            /* Show controls on mobile, but adjust styling */
+            .glide button[data-glide-dir] {
+                top: 25%; /* Move them up to be on the image */
+                font-size: 1.8rem;
+            }
+            .glide button[data-glide-dir="<"],
+            .glide button[data-glide-dir=">"] {
+                padding: 30px 10px; /* Reset padding for mobile */
+            }
+             .glide button[data-glide-dir]:hover {
+                font-size: 2.2rem;
             }
         }
     </style>
+    
 </head>
 <body>
+    <button class="mobile-menu-button dark" id="mobile-menu-button">
+        <span class="line"></span>
+         <span class="line"></span>
+        <span class="line"></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">HOME</a>
+        <a href="films.html" class="active">FILM</a>
+        <a href="photos.html">PHOTO</a>
+        <a href="paintings.html">SKETCH</a>
+        <a href="about.html">ABOUT</a>
+    </div>
     <!-- Navbar Container - Will be filled by JavaScript -->
     <!-- <div id="navbar-container"></div> -->
     <nav class="navbar">
@@ -587,6 +479,15 @@
             });
         });
 
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenuButton.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+            });
+        }
     </script>
 </body>
 

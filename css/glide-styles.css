@@ -1,0 +1,92 @@
+/* Styles for Glide carousel, adjusted from original */
+.glide {
+    margin-top: 68px;
+    /* Account for fixed navbar */
+    height: calc(100vh - 68px);
+    /* Fill remaining viewport height */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(12, 12, 12);
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .glide {
+        margin-top: 0px;
+    }
+} 
+
+.glide__track {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.glide__slides {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding: 40px 0px;
+
+}
+
+.glide__slide {
+    width: 100%;
+    height: 100%;
+}
+
+.glide__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* === Glide Controls Styling === */
+
+/* Individual Arrow Buttons */
+.glide button[data-glide-dir] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgb(248, 248, 248, 0);
+    /* Semi-transparent black */
+    color: rgb(248, 248, 248);
+    border: none;
+    font-size: 2.0rem;
+    /* Adjust size of arrows */
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 5px;
+    /* Slightly rounded corners */
+    transition: font-size 0.3s ease;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+.glide button[data-glide-dir]:hover {
+    /* background-color: rgba(0, 0, 0, 0.6); */
+    background-color: rgb(248, 248, 248, 0);
+    font-size: 2.5rem;
+    /* Darker on hover */
+}
+
+.glide button[data-glide-dir="<"] {
+    left: 0;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.glide button[data-glide-dir=">"] {
+    right: 0;
+    justify-content: flex-end;
+    padding-right: 20px;
+} 

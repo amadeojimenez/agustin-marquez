@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,363 +8,172 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- Required Core stylesheet -->
     <link rel="stylesheet" href="js/glide/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="css/glide-styles.css">
 
     <script src="js/glide/dist/glide.min.js"></script>
+    <!-- <script src="node_modules/@glidejs/glide/dist/glide.js"></script> -->
 
     <!-- Optional Theme stylesheet -->
     <!-- <link rel="stylesheet" href="js/glide/dist/css/glide.theme.min.css"> -->
-    <style>
-        /* Styles for Glide carousel, adjusted from original */
-        .glide {
-            margin-top: 68px;
-            /* Account for fixed navbar */
-            height: calc(100vh - 68px);
-            /* Fill remaining viewport height */
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            background-color: rgb(12, 12, 12);
-            cursor: pointer;
-        }
 
-        .glide__track {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .glide__slides {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-            padding: 40px 0px;
-
-        }
-
-        .glide__slide {
-            width: 100%;
-            height: 100%;
-        }
-
-        .glide__slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-    </style>
-    <style>
-        /* === Glide Controls Styling === */
-
-        /* Individual Arrow Buttons */
-      
-        /* Individual Arrow Buttons */
-        .glide button[data-glide-dir] {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgb(248, 248, 248, 0);
-            /* Semi-transparent black */
-            color: rgb(248, 248, 248);
-            border: none;
-            font-size: 2.0rem;
-            /* Adjust size of arrows */
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 5px;
-            /* Slightly rounded corners */
-            transition: font-size 0.3s ease;
-        }
-
-        .glide button[data-glide-dir=">"] {
-            padding: 200px 20px 200px 300px;
-        }
-        .glide button[data-glide-dir="<"] {
-            padding: 200px 300px 200px 20px;
-        }
-
-        .glide button[data-glide-dir]:hover {
-            /* background-color: rgba(0, 0, 0, 0.6); */
-            background-color: rgb(248, 248, 248, 0);
-            font-size: 2.5rem;
-            /* Darker on hover */
-        }
-
-        .glide button[data-glide-dir="<"] {
-            left: 20px;
-            /* Adjust as needed */
-        }
-
-        .glide button[data-glide-dir=">"] {
-            right: 20px;
-            /* Adjust as needed */
-        }
-
-        
-    </style>
-    <style>
-        /* Additional styles specific to the photos page */
-        .photo-intro {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            margin: 80px 0;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .photo-intro h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin: 0;
-            flex: 1;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .photo-intro-text {
-            flex: 1.5;
-            padding-left: 5%;
-            padding-top: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .photo-intro-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .photo-intro::before {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border: 2px solid #ddd; /* Changed from #333 to lighter gray */
-            top: -30px;
-            left: 40%;
-            z-index: 1;
-            opacity: 0.5; /* Increased opacity for light theme */
-        }
-        
-        .photo-intro::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: rgba(200, 200, 200, 0.3); /* Lighter background */
-            bottom: 20px;
-            right: 10%;
-            z-index: 1;
-        }
-        
-        .photos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 2rem;
-            padding: 0 5%;
-            margin-bottom: 80px;
-        }
-        
-        .photo-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .photo-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .photo-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        
-        .photo-item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 20px;
-            color: white; /* Keeping text white for contrast against dark overlay */
-        }
-        
-        .photo-item-overlay h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.2rem;
-        }
-        
-        .photo-item-overlay p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 900px) {
-            .photos-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .photo-intro {
-                flex-direction: column;
-            }
-            
-            .photo-intro-text {
-                padding-left: 0;
-                padding-top: 2rem;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .photos-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
-<body>
-    <!-- Navbar Container - Will be filled by JavaScript -->
-    <!-- <div id="navbar-container"></div> -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-item"><a href="films.html" id="videos-link">FILM</a></div>
-            <div class="nav-item"><a href="photos.html" class="active" id="photos-link">PHOTO</a></div>
-            <div class="nav-item name-container">
-                <a href="index.html">
-                    <div class="name-wrapper">
-                        <div class="main-name">AGUSTIN MARQUEZ</div>
-                        <!-- <div class="subtitle">Filmmaker, Photographer, Painter</div> -->
-                    </div>
-                </a>
-            </div>
-            <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCH</a></div>
-            <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
-        </div>
-    </nav>
 
-    <div class="glide">
-        <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-                <li class="glide__slide"><img src="media/photo/0.jpg" alt="Agustin Marquez Photo"></li>
-                <li class="glide__slide"><img src="media/photo/1.jpg" alt="Agustin Marquez Photo"></li>
-                <li class="glide__slide"><img src="media/photo/2.jpg" alt="Agustin Marquez Photo"></li>
-                <li class="glide__slide"><img src="media/photo/3.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/4.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/5.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/6.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/7.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/8.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/9.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/10.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/11.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/12.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/13.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/14.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/15.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/16.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/17.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/18.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/19.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/20.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/21.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/22.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/23.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/24.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/25.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/26.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-                <li class="glide__slide"><img src="media/photo/27.jpg" alt="Agustin Marquez Photo" loading="lazy">
-                </li>
-            </ul>
+<body style="background-color: rgb(12, 12, 12);"></body>
+<button class="mobile-menu-button" id="mobile-menu-button">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+</button>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">HOME</a>
+    <a href="films.html">FILM</a>
+    <a href="photos.html" class="active">PHOTO</a>
+    <a href="paintings.html">SKETCH</a>
+    <a href="about.html">ABOUT</a>
+</div>
+<nav class="navbar dark">
+    <div class="nav-container">
+        <div class="nav-item"><a href="films.html" id="videos-link">FILM</a></div>
+        <div class="nav-item"><a href="photos.html" class="active" id="photos-link">PHOTO</a></div>
+        <div class="nav-item name-container">
+            <a href="index.html">
+                <div class="name-wrapper">
+                    <div class="main-name">AGUSTIN MARQUEZ</div>
+                    <!-- <div class="subtitle">Filmmaker, Photographer, Painter</div> -->
+                </div>
+            </a>
         </div>
-        <div data-glide-el="controls">
-            <button data-glide-dir="<">&#8249;</button>
-            <button data-glide-dir=">">&#8250;</button>
-        </div>
+        <div class="nav-item"><a href="paintings.html" id="paintings-link">SKETCH</a></div>
+        <div class="nav-item"><a href="about.html" id="about-link">ABOUT</a></div>
     </div>
+</nav>
 
-    <script>
-        const glide = new Glide('.glide', {
-            animationDuration: 1000,
-            animationTimingFunc: 'ease-in-out',
-            perView: 1,
-            gap: 0,
-            hoverpause: true,
-            keyboard: true,
-            type: 'carousel'
-        }).mount();
+<div class="mobile-page-title">Photo</div>
 
-        const allSlideElements = document.querySelectorAll('.glide__slide');
-        const totalNumberOfSlides = allSlideElements.length;
-        const lazyLoadWindowRadius = 4; // Load current +/- this many slides
+<div class="glide">
+    <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+            <li class="glide__slide"><img src="media/photo/0.jpg" alt="Agustin Marquez Photo"></li>
+            <li class="glide__slide"><img src="media/photo/1.jpg" alt="Agustin Marquez Photo"></li>
+            <li class="glide__slide"><img src="media/photo/2.jpg" alt="Agustin Marquez Photo"></li>
+            <li class="glide__slide"><img src="media/photo/3.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/4.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/5.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/6.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/7.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/8.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/9.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/10.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/11.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/12.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/13.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/14.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/15.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/16.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/17.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/18.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/19.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/20.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/21.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/22.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/23.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/24.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/25.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/26.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+            <li class="glide__slide"><img src="media/photo/27.jpg" alt="Agustin Marquez Photo" loading="lazy">
+            </li>
+        </ul>
+    </div>
+    <div data-glide-el="controls">
+        <button data-glide-dir="<">&#8249;</button>
+        <button data-glide-dir=">">&#8250;</button>
+    </div>
+</div>
 
-        function manageSlideImageLoading(currentIndex) {
+<script>
+    const glide = new Glide('.glide', {
+        animationDuration: 1000,
+        animationTimingFunc: 'ease-in-out',
+        perView: 1,
+        gap: 0,
+        hoverpause: true,
+        keyboard: true,
+        type: 'carousel'
+    }).mount();
 
-            allSlideElements.forEach((slideLi, i) => {
-                const img = slideLi.querySelector('img');
-                console.log(img.src)
-                console.log(i)
-                if (!img) return;
+    const allSlideElements = document.querySelectorAll('.glide__slide');
+    const totalNumberOfSlides = allSlideElements.length;
+    const lazyLoadWindowRadius = 4; // Load current +/- this many slides
 
-                let diff = Math.abs(i - currentIndex);
-                if (diff > totalNumberOfSlides / 2) {
-                    diff = totalNumberOfSlides - diff;
+    function manageSlideImageLoading(currentIndex) {
+
+        allSlideElements.forEach((slideLi, i) => {
+            const img = slideLi.querySelector('img');
+            console.log(img.src)
+            console.log(i)
+            if (!img) return;
+
+            let diff = Math.abs(i - currentIndex);
+            if (diff > totalNumberOfSlides / 2) {
+                diff = totalNumberOfSlides - diff;
+            }
+
+            if (diff <= lazyLoadWindowRadius) {
+                console.log('Eager loading: Index', i, 'Image:', img.src.split('/').pop());
+                if (img.getAttribute('loading') === 'lazy') {
+                    img.setAttribute('loading', 'eager');
                 }
+            }
+        });
 
-                if (diff <= lazyLoadWindowRadius) {
-                    console.log('Eager loading: Index', i, 'Image:', img.src.split('/').pop());
-                    if (img.getAttribute('loading') === 'lazy') {
-                        img.setAttribute('loading', 'eager');
-                    }
-                }
-            });
+    }
 
-        }
+    glide.on('mount.after', () => {
+        manageSlideImageLoading(glide.index);
+    });
 
-        glide.on('mount.after', () => {
+    glide.on('run.after', () => {
+        setTimeout(() => {
             manageSlideImageLoading(glide.index);
-        });
+        }, 600);
+    });
 
-        glide.on('run.after', () => {
-            setTimeout(() => {
-                manageSlideImageLoading(glide.index);
-            }, 600);
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
         });
-    </script>
+    }
+</script>
 </body>
 
 </html>

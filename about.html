@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .photo-intro h1 {
             font-size: 4.5rem;
             font-weight: 700;
@@ -26,7 +27,7 @@
             position: relative;
             z-index: 2;
         }
-        
+
         .photo-intro-text {
             flex: 1.5;
             padding-left: 5%;
@@ -34,36 +35,39 @@
             position: relative;
             z-index: 2;
         }
-        
+
         .photo-intro-text p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
-        
+
         .photo-intro::before {
             content: '';
             position: absolute;
             width: 150px;
             height: 150px;
-            border: 2px solid #ddd; /* Changed from #333 to lighter gray */
+            border: 2px solid #ddd;
+            /* Changed from #333 to lighter gray */
             top: -30px;
             left: 40%;
             z-index: 1;
-            opacity: 0.5; /* Increased opacity for light theme */
+            opacity: 0.5;
+            /* Increased opacity for light theme */
         }
-        
+
         .photo-intro::after {
             content: '';
             position: absolute;
             width: 100px;
             height: 100px;
-            background-color: rgba(200, 200, 200, 0.3); /* Lighter background */
+            background-color: rgba(200, 200, 200, 0.3);
+            /* Lighter background */
             bottom: 20px;
             right: 10%;
             z-index: 1;
         }
-        
+
         .photos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -71,7 +75,7 @@
             padding: 0 5%;
             margin-bottom: 80px;
         }
-        
+
         .photo-item {
             position: relative;
             overflow: hidden;
@@ -79,17 +83,17 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
-        
+
         .photo-item:hover {
             transform: translateY(-5px);
         }
-        
+
         .photo-item img {
             width: 100%;
             height: 250px;
             object-fit: cover;
         }
-        
+
         .photo-item-overlay {
             position: absolute;
             bottom: 0;
@@ -97,35 +101,36 @@
             right: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             padding: 20px;
-            color: white; /* Keeping text white for contrast against dark overlay */
+            color: white;
+            /* Keeping text white for contrast against dark overlay */
         }
-        
+
         .photo-item-overlay h3 {
             margin: 0 0 5px 0;
             font-size: 1.2rem;
         }
-        
+
         .photo-item-overlay p {
             margin: 0;
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        
+
         @media (max-width: 900px) {
             .photos-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .photo-intro {
                 flex-direction: column;
             }
-            
+
             .photo-intro-text {
                 padding-left: 0;
                 padding-top: 2rem;
             }
         }
-        
+
         @media (max-width: 600px) {
             .photos-grid {
                 grid-template-columns: 1fr;
@@ -135,7 +140,8 @@
     <style>
         .carousel-container {
             width: 100%;
-            height: 100vh; /* Adjust as needed, or set a fixed height */
+            height: 100vh;
+            /* Adjust as needed, or set a fixed height */
             overflow: hidden;
             position: relative;
             cursor: pointer;
@@ -161,20 +167,38 @@
             padding: 10px 20px;
             border-radius: 5px;
             text-align: center;
-            z-index: 10; /* Ensure it's above the image */
+            z-index: 10;
+            /* Ensure it's above the image */
             font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: 0.05em;
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar Container - Will be filled by JavaScript -->
     <!-- <div id="navbar-container"></div> -->
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-button dark" id="mobile-menu-button">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">HOME</a>
+        <a href="films.html">FILM</a>
+        <a href="photos.html">PHOTO</a>
+        <a href="paintings.html">SKETCH</a>
+        <a href="about.html" class="active">ABOUT</a>
+    </div>
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-item"><a href="films.html" id="videos-link">FILM</a></div>
-            <div class="nav-item"><a href="photos.html"  id="photos-link">PHOTO</a></div>
+            <div class="nav-item"><a href="photos.html" id="photos-link">PHOTO</a></div>
             <div class="nav-item name-container">
                 <a href="index.html">
                     <div class="name-wrapper">
@@ -188,13 +212,25 @@
         </div>
     </nav>
 
-        <div class="carousel-container">
-            <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez Photo" >
-            <div class="contact-overlay" >
-                <a href="mailto:contact@agustinmarquez.com">contact@agustinmarquez.com</a>
-            </div>
+    <div class="carousel-container">
+        <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez Photo">
+        <div class="contact-overlay">
+            <a href="mailto:contact@agustinmarquez.com">info@agustinmarquez.com</a>
         </div>
+    </div>
 
 </body>
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            // mobileMenuButton.classList.toggle('dark')
+        });
+    }
+</script>
 
 </html>

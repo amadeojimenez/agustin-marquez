@@ -5,78 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agustín Marquez - Filmmaker</title>
-    <!-- <link rel="icon" href="media/paintings/6.jpg"> -->
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Masonry layout for paintings in homepage */
-        #paintings-summary .thumbnails-grid {
-            /* column-count: 3; */ /* Removed for standard grid */
-            /* column-gap: 2rem; */ /* Handled by general .thumbnails-grid or section-specific */
-            /* padding: 0; */ /* Handled by general .thumbnails-grid or section-specific */
-            /* margin-bottom: 40px; */ /* Handled by general .thumbnails-grid or section-specific */
-        }
-
-        #paintings-summary .thumbnail-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            /* margin-bottom: 2rem; */ /* This was the masonry specific one */
-            /* break-inside: avoid; */ /* Removed masonry specific */
-            /* display: block; */ /* Removed masonry specific */
-            /* aspect-ratio: auto; */ /* Removed masonry specific, will be set to 16/9 later */
-            /* Override potential fixed aspect ratio */
-        }
-
-        #paintings-summary .thumbnail-item:hover {
-            transform: translateY(-5px);
-        }
-
-        #paintings-summary .thumbnail-item img {
-            width: 100%;
-            /* height: auto; */ /* Removed masonry specific, will be set to 100% later */
-            display: block;
-            object-fit: cover;
-            /* Keep cover, but height: auto allows aspect ratio */
-        }
-
-        #paintings-summary .thumbnail-item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 20px;
-            color: white;
-            /* Keep text white for contrast against dark overlay */
-        }
-
-        #paintings-summary .thumbnail-item-overlay h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.2rem;
-
-            font-weight: 400;
-        }
-
-        #paintings-summary .thumbnail-item-overlay p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 900px) {
-            #paintings-summary .thumbnails-grid {
-                column-count: 2;
-            }
-        }
-
-        @media (max-width: 600px) {
-            #paintings-summary .thumbnails-grid {
-                column-count: 1;
-            }
-        }
-
         /* Video section styles */
         #video-summary .thumbnail-item {
             position: relative;
@@ -84,7 +14,6 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            /* margin-bottom: 2rem; */
             aspect-ratio: 16/9;
             cursor: pointer;
         }
@@ -135,7 +64,6 @@
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            /* margin-bottom: 2rem; */
             aspect-ratio: 16/9; /* Changed from 3/2 to 16/9 */
             cursor: pointer;
         }
@@ -181,14 +109,13 @@
         }
 
         /* Paintings section styles */
-        #paintings-summary .thumbnail-item { /* This is the second declaration, ensure it aligns */
+        #paintings-summary .thumbnail-item {
             position: relative;
             overflow: hidden;
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            /* margin-bottom: 2rem; */
-            aspect-ratio: 16/9; /* Set to 16/9 for consistency */
+            aspect-ratio: 16/9;
             cursor: pointer;
         }
 
@@ -196,9 +123,9 @@
             transform: translateY(-5px);
         }
 
-        #paintings-summary .thumbnail-item img { /* This is the second declaration */
+        #paintings-summary .thumbnail-item img {
             width: 100%;
-            height: 100%; /* Ensure image fills the 16/9 container */
+            height: 100%;
             object-fit: cover;
             display: block;
         }
@@ -235,16 +162,14 @@
         /* Hero Video Text Overlay */
         .hero-text-overlay {
             position: absolute;
-            top: 50%;
+            top: 48%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
-            /* color: white; */
             text-align: center;
             display: inline-block;
             color: rgb(255, 255, 255) !important;
-            /* background-color: rgba(255, 255, 255, 0.7); */
-            /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); Optional: for better readability */
+            transition: color 1s ease-in-out;
         }
 
         .video-background-overlay {
@@ -253,8 +178,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* background-color: rgba(14, 14, 14, 0.2);  */
-            z-index: 1; /* Ensures it's above the video but below the text */
+            z-index: 1;
         }
 
         /* New style for the main title paragraph */
@@ -340,10 +264,32 @@
         main {
             position: relative; /* Establishes a positioning context for fake-navbar */
         }
+
+        @media (max-width: 600px) {
+            .hero-overlay-main-title {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-button" id="mobile-menu-button">
+        <span class="line"></span>
+         <span class="line"></span>
+        <span class="line"></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="active">HOME</a>
+        <a href="films.html">FILM</a>
+        <a href="photos.html">PHOTO</a>
+        <a href="paintings.html">SKETCH</a>
+        <a href="about.html">ABOUT</a>
+    </div>
+
     <!-- Main Navbar - Standard Sticky -->
     <nav class="navbar-true" id="main-navbar" style="opacity: 0;">
         <div class="nav-container">
@@ -354,7 +300,6 @@
                 <a href="index.html">
                     <div class="name-wrapper">
                         <div class="main-name">AGUSTIN MARQUEZ</div>
-                        <!-- <div class="sub-name">Filmmaker & Photographer</div> -->
                     </div>
                 </a>
             </div>
@@ -366,19 +311,18 @@
     <!-- Hero Video Section -->
     <header class="hero">
         <div class="video-container">
-            <video autoplay muted id="hero-video" onended="showStillImage()">
-                <source src="https://qrkit.es/publico/936/src/img/intro.mov" type="video/mp4">
+            <video autoplay muted id="hero-video">
+                <source src="https://qrkit.es/publico/936/src/img/intro2.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <img id="still-image" src="media/misc/still.jpg" alt="Agustin Marquez"
-                style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+                style="display: none; opacity: 0; transition: opacity 1s ease-in-out; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
             <div class="video-background-overlay"></div>
-            <!-- <div class="overlay"></div> -->
             <div class="hero-text-overlay" id="title-overlay">
                 <p class="hero-overlay-main-title">AGUSTIN MARQUEZ GOMEZ</p>
-                <div class="hero-text-overlay-sub">
+                <!-- <div class="hero-text-overlay-sub">
                     <span>Filmmaker</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>
@@ -397,7 +341,6 @@
                     <a href="index.html">
                         <div class="name-wrapper">
                             <div class="main-name">AGUSTIN MARQUEZ</div>
-                            <!-- <div class="sub-name">Filmmaker & Photographer</div> -->
                         </div>
                     </a>
                 </div>
@@ -408,9 +351,6 @@
 
         <!-- Video Section Summary -->
         <section class="summary-section" id="video-summary">
-            <!-- <div class="section-title">
-                <h2>FILM</h2>
-            </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item"
                     data-vimeo-embed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771577602?h=4159b4eafa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brothers - English trailer"></iframe></div>'>
@@ -447,62 +387,50 @@
 
         <!-- Photo Section Summary -->
         <section class="summary-section" id="photo-summary">
-            <!-- <div class="section-title">
-                <h2>PHOTO</h2>
-            </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/1.png" alt="Personal">
+                    <img src="media/index_photo/0.jpg" alt="Personal">
                     <div class="photo-overlay">
                         <h3>Photo</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/2.png" alt="Art">
+                    <img src="media/index_photo/1.jpg" alt="Art">
                     <div class="photo-overlay">
                         <h3>Photo</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/3.png" alt="Africa">
+                    <img src="media/index_photo/2.jpg" alt="Africa">
                     <div class="photo-overlay">
                         <h3>Photo</h3>
                     </div>
                 </div>
             </div>
-            <!-- <div class="view-more">
-                <a href="photos.html">View All Photos</a>
-            </div> -->
         </section>
 
         <!-- Paintings Section Summary -->
         <section class="summary-section" id="paintings-summary">
-            <!-- <div class="section-title">
-                <h2>SKETCH</h2>
-            </div> -->
             <div class="thumbnails-grid">
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/4.png" alt="Alex">
+                    <img src="media/index_painting/1.jpg" alt="Alex">
                     <div class="painting-overlay">
                         <h3>Sketch</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/5.png" alt="Arya">
+                    <img src="media/index_painting/2.jpg" alt="Arya">
                     <div class="painting-overlay">
                         <h3>Sketch</h3>
                     </div>
                 </div>
                 <div class="thumbnail-item">
-                    <img src="https://qrkit.es/publico/936/src/img/6.png" alt="Sketches">
+                    <img src="media/index_painting/3.jpg" alt="Sketches">
                     <div class="painting-overlay">
                         <h3>Sketch</h3>
                     </div>
                 </div>
             </div>
-            <!-- <div class="view-more">
-                <a href="paintings.html">View All Paintings</a>
-            </div> -->
         </section>
         <footer>
             <p>&copy; 2025 Agustin Marquez. All Rights Reserved. | <a
@@ -539,66 +467,37 @@
                     video.currentTime = 0;
                 });
             });
-        });
 
-        // Load paintings data for homepage
-        document.addEventListener('DOMContentLoaded', function () {
-            const paintingsSummaryGrid = document.getElementById('paintings-summary-grid');
-            if (!paintingsSummaryGrid) return;
-
-            // Fetch the painting data from JSON file
-            fetch('data/paintingData.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Display only the first 10 paintings (or all if less than 10)
-                    const displayPaintings = data.paintings.slice(0, 10);
-
-                    // Generate the grid items
-                    generatePaintingsSummaryGrid(displayPaintings);
-                })
-                .catch(error => {
-                    console.error('Error loading painting data:', error);
-                    paintingsSummaryGrid.innerHTML = '<p>Error loading paintings. Please refresh the page.</p>';
-                });
-
-            // Generate the paintings grid for the homepage
-            function generatePaintingsSummaryGrid(paintings) {
-                // Clear any existing content
-                paintingsSummaryGrid.innerHTML = '';
-
-                // Generate HTML for each painting
-                paintings.forEach(painting => {
-                    const paintingItem = document.createElement('div');
-                    paintingItem.className = 'thumbnail-item';
-
-                    paintingItem.innerHTML = `
-                        <a href="paintings.html">
-                            <img src="${painting.imgSrc}" alt="${painting.alt}">
-                            <div class="thumbnail-item-overlay">
-                                <h3>${painting.title}</h3>
-                                <p>${painting.shortDescription}</p>
-                            </div>
-                        </a>
-                    `;
-
-                    paintingsSummaryGrid.appendChild(paintingItem);
-                });
+            const heroVideo = document.getElementById('hero-video');
+            if (heroVideo) {
+                heroVideo.addEventListener('play', () => {
+                    setTimeout(showStillImage, 33000);
+                }, { once: true });
             }
         });
 
         // Show still image when video ends
         function showStillImage() {
-            console.log('vamos!')
             const video = document.getElementById('hero-video');
             const stillImage = document.getElementById('still-image');
-            video.style.display = 'none';
-            stillImage.style.display = 'block';
             const title = document.getElementById('title-overlay');
+
+            // Make the image take up space
+            stillImage.style.display = 'block';
+
+            // Start the fade-in. Use a tiny timeout to ensure the browser has applied 'display: block'
+            // before the opacity transition starts.
+            setTimeout(() => {
+                stillImage.style.opacity = '1';
+            }, 10);
+
+            // Add event listener for when the fade-in is complete
+            stillImage.addEventListener('transitionend', () => {
+                // Hide the video only after the image is fully visible
+                video.style.display = 'none';
+            }, { once: true }); // Use 'once' to automatically remove the listener after it fires
+
+            // Start the color fade for the title
             title.classList.add('title-overlay-black');
         }
 
@@ -661,11 +560,7 @@
             const fadeOutThreshold = 100; // Pixels scrolled before arrow starts to fade
 
             // ´if (!scrollArrowContainer) return;
-            console.log(scrollArrowContainer); // TODO: Remove debug log
             function handleScrollArrow() {
-                console.log(window.scrollY)
-                // console.log(`fadeOutThreshold`,fadeOutThreshold); // TODO: Remove debug log
-                // console.log(`window.scrollY > fadeOutThreshold`,window.scrollY > fadeOutThreshold); // TODO: Remove debug log
                 if (window.scrollY > fadeOutThreshold) {
                     if (scrollArrowContainer) scrollArrowContainer.style.opacity = '0';
                 } else {
@@ -681,8 +576,6 @@
                     if (fakeNavbarContainer) fakeNavbarContainer.style.opacity = '0';   
                 }
                 const arrowRect = fakeNavbarContainer.getBoundingClientRect();
-                console.log('---arrowRect.top---',arrowRect.top)
-                console.log(`arrowRect`,arrowRect); // TODO: Remove debug log
                 if (arrowRect.top <= 0) {
                     mainNavbarContainer.style.opacity = '1';
                 } else {
@@ -694,6 +587,19 @@
             handleScrollArrow();
             // Listen for scroll events
             window.addEventListener('scroll', handleScrollArrow);
+        });
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenuButton.classList.toggle('open');
+                    mobileMenu.classList.toggle('open');
+                });
+            }
         });
     </script>
 </body>
