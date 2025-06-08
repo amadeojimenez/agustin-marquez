@@ -71,6 +71,11 @@
     padding-top: 200px;
     padding-bottom: 200px;
 }
+@media (max-width: 780px) {
+    .glide button[data-glide-dir] {
+        width: 10%;
+    }
+}
 
 .glide button[data-glide-dir]:hover {
     /* background-color: rgba(0, 0, 0, 0.6); */

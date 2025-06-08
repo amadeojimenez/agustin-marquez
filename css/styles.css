@@ -543,6 +543,21 @@ footer {
         letter-spacing: .1em;
         text-transform: uppercase;
     }
+    .mobile-menu-title {
+        position: absolute;
+        top: 24px;
+        left: 0;
+        width: 100%;
+        color: rgb(12, 12, 12);
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 300;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+    .mobile-page-title.dark {
+        color: rgb(12, 12, 12) !important;
+    }
 }
 
 /* Scroll Arrow for Main Section */
@@ -618,8 +633,8 @@ footer {
 } */
 
 .mobile-menu-button.open {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: rgb(12, 12, 12);
 }
 
@@ -668,6 +683,7 @@ footer {
 .mobile-menu.open a:nth-child(3) { transition-delay: 0.3s; }
 .mobile-menu.open a:nth-child(4) { transition-delay: 0.35s; }
 .mobile-menu.open a:nth-child(5) { transition-delay: 0.4s; }
+.mobile-menu.open a:nth-child(6) { transition-delay: 0.45s; }
 
 .mobile-menu a.active {
     font-weight: 500;
