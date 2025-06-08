@@ -40,7 +40,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.5s ease;
         }
 
         #video-summary .thumbnail-item:hover .video-overlay {
@@ -169,7 +169,7 @@
             text-align: center;
             display: inline-block;
             color: rgb(255, 255, 255) !important;
-            transition: color 1s ease-in-out;
+            transition: color 1.5s ease-in-out;
         }
 
         .video-background-overlay {
@@ -481,6 +481,8 @@
             const video = document.getElementById('hero-video');
             const stillImage = document.getElementById('still-image');
             const title = document.getElementById('title-overlay');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            mobileMenuButton.classList.add('dark');
 
             // Make the image take up space
             stillImage.style.display = 'block';
